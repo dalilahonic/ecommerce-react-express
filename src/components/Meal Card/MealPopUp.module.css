@@ -1,0 +1,34 @@
+.mealOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.mealPopUp {
+  height: 80vh;
+  width: 40%;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 2000;
+  overflow-y: scroll;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.mealPopUp img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.mealPopUp h1,
+.mealPopUp p {
+  margin-inline: 20px;
+}

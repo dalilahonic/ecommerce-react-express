@@ -1,0 +1,20 @@
+.mealsContainer {
+  padding-block: 0 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5%;
+}
+
+div.mealsHeading {
+  position: relative;
+  margin-block: 50px 10px;
+  height: 40px;
+}
+
+div.mealsHeading h1 {
+  position: absolute;
+  left: 12%;
+  font-weight: bold;
+}

@@ -1,0 +1,56 @@
+div.mealCard {
+  width: 33%;
+  height: 120px;
+  padding: 0.5%;
+  display: flex;
+  border: 2px solid #dadadb;
+  margin-block: 1%;
+  border-radius: 4px;
+  background-color: white;
+}
+
+div.mealCard:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.2s ease-in-out;
+}
+
+div.mealCard p {
+  padding-inline: 10px;
+}
+
+div.mealCard div.mealPhoto {
+  width: 25%;
+  height: 100%;
+  padding: 10px;
+}
+
+div.mealInformation {
+  width: 75%;
+}
+
+div.mealCard img {
+  height: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+div.mealInformation p {
+  color: #313132;
+  font-size: 15px;
+  margin: 9px 2px 0px 10px;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+div.mealInformation p:nth-of-type(1) {
+  color: black;
+  font-weight: bold;
+}
