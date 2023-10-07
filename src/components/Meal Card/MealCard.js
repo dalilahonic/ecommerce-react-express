@@ -22,7 +22,10 @@ function MealCard({
         <div className={classes.mealInformation}>
           <p> {title}</p>
           <p> {description}</p>
-          <p> ${price.toFixed(2)}</p>
+          <p className={classes.price}>
+            {' '}
+            ${price.toFixed(2)}
+          </p>
         </div>
         <div className={classes.mealPhoto}>
           <img
@@ -38,6 +41,7 @@ function MealCard({
           price={price}
           imgUrl={imgUrl}
           alt={alt}
+          setIsMealOpen={setIsMealOpen}
         />
       )}
     </>
