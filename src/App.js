@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import MealsContainer from './components/Meals Container/MealsContainer';
+import SearchBar from './components/Search Bar/SearchBar';
+import ImageComponent from './components/Image Component/ImageComponent';
 
 function App() {
   const [mealsData, setMealsData] = useState({});
@@ -29,7 +31,7 @@ function App() {
   }, []);
 
   function transformHeading(heading) {
-    let newHeading = heading
+    return heading
       .split('_')
       .map(
         (el) =>
@@ -37,8 +39,6 @@ function App() {
           el.slice(1).toLowerCase()
       )
       .join(' ');
-
-    return newHeading;
   }
 
   const arr = [
@@ -52,12 +52,15 @@ function App() {
     'desserts',
     'beverages',
   ];
+  console.log(mealsData);
   return (
     <>
       <Header />
+      <ImageComponent />
+      <SearchBar links={arr} />
       <div
         style={{
-          backgroundColor: '#F6F7F9',
+          backgroundColor: 'var(main)',
           paddingTop: '50px',
         }}
       >

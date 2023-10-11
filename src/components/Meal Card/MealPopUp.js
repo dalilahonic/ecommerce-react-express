@@ -9,7 +9,7 @@ function MealPopUp({
   setIsMealOpen,
 }) {
   function handleClick() {
-    setIsMealOpen(false);
+    setIsMealOpen(false); 
   }
 
   return (

@@ -29,7 +29,10 @@ function MealCard({
         </div>
         <div className={classes.mealPhoto}>
           <img
-            src='https://www.mcdonalds.rs/wp-content/uploads/2021/10/Cheeseburger-2.jpg'
+            src={
+              `${imgUrl}` ||
+              'https://www.mcdonalds.rs/wp-content/uploads/2021/10/Cheeseburger-2.jpg'
+            }
             alt={alt}
           />
         </div>
