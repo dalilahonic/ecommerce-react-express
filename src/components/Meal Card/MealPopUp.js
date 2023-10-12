@@ -1,4 +1,8 @@
 import classes from './MealPopUp.module.css';
+import SauceOptions from './SauceOptions';
+import MinusAndPlusButtons from './MinusAndPlusButtons';
+import OrderButton from './OrderButton';
+import BtnExit from './BtnExit';
 
 function MealPopUp({
   title,
@@ -7,36 +11,33 @@ function MealPopUp({
   imgUrl,
   alt,
   setIsMealOpen,
+  data,
 }) {
-  function handleClick() {
-    setIsMealOpen(false); 
-  }
-
   return (
     <div className={classes.mealOverlay}>
       <div className={classes.mealPopUp}>
-        <img
-          src='https://www.mcdonalds.rs/wp-content/uploads/2021/10/Cheeseburger-2.jpg'
-          alt={alt}
-        />
+        <img src={imgUrl} alt={alt} />
         <h1>{title}</h1>
         <p className={classes.price}>${price.toFixed(2)}</p>
         <p>{description}</p>
-        <div className={classes.minusAndPlus}>
-          <button className={classes.minus}>-</button>
-          <p className={classes.quantity}>1</p>
-          <button className={classes.plus}>+</button>
-        </div>
-        <button
-          onClick={handleClick}
-          className={classes.btnExit}
-        >
-          X
-        </button>
-        <button className={classes.btnAddToOrder}>
-          <span>Add to Order</span>
-          <span>${price.toFixed(2)}</span>
-        </button>
+        <MinusAndPlusButtons />
+        <div
+          style={{
+            height: '30px',
+            width: '100%',
+            backgroundColor: '#F1F1F1',
+          }}
+        ></div>
+        <SauceOptions data={data} title={title} />
+        <BtnExit setIsMealOpen={setIsMealOpen} />
+        <div
+          style={{
+            height: '30px',
+            width: '100%',
+            backgroundColor: '#F1F1F1',
+          }}
+        ></div>
+        <OrderButton price={price} />
       </div>
     </div>
   );

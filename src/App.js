@@ -52,7 +52,6 @@ function App() {
     'desserts',
     'beverages',
   ];
-  console.log(mealsData);
   return (
     <>
       <Header />

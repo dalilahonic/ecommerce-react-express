@@ -8,9 +8,9 @@ function MealCard({
   price,
   imgUrl,
   alt,
+  data,
 }) {
   const [isMealOpen, setIsMealOpen] = useState(false);
-
   function openPopUp() {
     setIsMealOpen(true);
     document.body.classList.add('scrollLock');
@@ -28,17 +28,12 @@ function MealCard({
           </p>
         </div>
         <div className={classes.mealPhoto}>
-          <img
-            src={
-              `${imgUrl}` ||
-              'https://www.mcdonalds.rs/wp-content/uploads/2021/10/Cheeseburger-2.jpg'
-            }
-            alt={alt}
-          />
+          <img src={imgUrl} alt={alt} />
         </div>
       </div>
       {isMealOpen && (
         <MealPopUp
+          data={data}
           title={title}
           description={description}
           price={price}

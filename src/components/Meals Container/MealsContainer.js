@@ -14,6 +14,7 @@ function MealsContainer({
       <div className={classes.mealsContainer}>
         {mealsData[heading]?.map((meal, index) => (
           <MealCard
+            data={mealsData}
             key={index}
             title={meal.mealName}
             description={meal.description}
