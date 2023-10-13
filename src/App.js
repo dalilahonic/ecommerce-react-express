@@ -6,6 +6,7 @@ import ImageComponent from './components/Image Component/ImageComponent';
 
 function App() {
   const [mealsData, setMealsData] = useState({});
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     async function getData() {
@@ -53,18 +54,28 @@ function App() {
     'beverages',
   ];
 
+  function onChangeInputValue(value) {
+    setInputValue(value);
+  }
+
   return (
     <>
       <Header />
       <ImageComponent />
-      <SearchBar links={sectionNames} />
+      <SearchBar
+        links={sectionNames}
+        onChangeInputValue={onChangeInputValue}
+      />
 
       {sectionNames.map((el, index) => (
         <MealsContainer
+          id={`meal${index}`}
           key={index}
           mealsData={mealsData}
           heading={el}
+          sectionNames={sectionNames}
           transformedHeading={transformHeading(el)}
+          inputValue={inputValue}
         />
       ))}
     </>

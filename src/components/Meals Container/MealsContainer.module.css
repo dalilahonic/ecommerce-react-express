@@ -1,10 +1,34 @@
+div.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .mealsContainer {
   padding-block: 0 50px;
+  width: 68%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
   gap: 2.5%;
+  align-self: center;
+  background-color: var(--main);
+}
+  
+.main {
+  background-color: var(--main);
+}
+
+div.mealsHeading {
+  position: relative;
+  margin-block: 50px 10px;
+  height: 40px;
+  justify-self: center;
+}
+
+div.mealsHeading h1 {
+  position: absolute;
+  left: 16%;
+  font-weight: bold;
 }
 
 div.mealsHeading {
@@ -14,7 +38,5 @@ div.mealsHeading {
 }
 
 div.mealsHeading h1 {
-  position: absolute;
-  left: 16%;
   font-weight: bold;
 }

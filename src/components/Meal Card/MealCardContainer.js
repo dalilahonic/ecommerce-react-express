@@ -7,9 +7,15 @@ function MealCardContainer({
   imgUrl,
   alt,
   openPopUp,
+  id,
 }) {
+
+
   return (
-    <div className={classes.mealCard} onClick={openPopUp}>
+    <div
+      className={classes.mealCard}
+      onClick={openPopUp}
+    >
       <div className={classes.mealInformation}>
         <p> {title}</p>
         <p> {description}</p>

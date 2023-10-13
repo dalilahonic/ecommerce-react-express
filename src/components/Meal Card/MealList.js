@@ -9,6 +9,7 @@ function MealList({
   price,
   imgUrl,
   alt,
+  id,
 }) {
   const [isMealOpen, setIsMealOpen] = useState(false);
 
@@ -19,6 +20,7 @@ function MealList({
   return (
     <>
       <MealCardContainer
+        id={id}
         openPopUp={openPopUp}
         price={price}
         title={title}
