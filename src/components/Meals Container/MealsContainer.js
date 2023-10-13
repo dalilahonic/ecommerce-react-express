@@ -8,9 +8,9 @@ function MealsContainer({
   transformedHeading,
   inputValue,
   id,
+  sectionNames,
 }) {
   const [filteredData, setFilteredData] = useState({});
-
   useEffect(() => {
     const filtered = mealsData[heading]?.filter((el) => {
       return el.mealName
@@ -38,6 +38,7 @@ function MealsContainer({
             <div className={classes.mealsContainer}>
               {filteredData[heading]?.map((meal, index) => (
                 <MealList
+                  sectionNames={sectionNames}
                   data={mealsData}
                   key={index}
                   title={meal.mealName}
@@ -45,6 +46,7 @@ function MealsContainer({
                   price={meal.price}
                   imgUrl={meal.image}
                   alt={meal.mealName}
+                  options={meal.options}
                 />
               ))}
             </div>

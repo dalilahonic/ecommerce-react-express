@@ -13,6 +13,8 @@ function MealPopUp({
   alt,
   setIsMealOpen,
   data,
+  sectionNames,
+  options,
 }) {
   return (
     <div className={classes.mealOverlay}>
@@ -23,7 +25,11 @@ function MealPopUp({
         <p>{description}</p>
         <MinusAndPlusButtons />
         <Seperator classClr='grey' />
-        <SauceMain data={data} title={title} />
+        <SauceMain
+          options={options}
+          data={data}
+          title={title}
+        />
         <BtnExit setIsMealOpen={setIsMealOpen} />
         <Seperator classClr='grey' />
         <Seperator classClr='white' />

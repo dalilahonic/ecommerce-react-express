@@ -10,6 +10,8 @@ function MealList({
   imgUrl,
   alt,
   id,
+  sectionNames,
+  options,
 }) {
   const [isMealOpen, setIsMealOpen] = useState(false);
 
@@ -30,6 +32,7 @@ function MealList({
       />
       {isMealOpen && (
         <MealPopUp
+          sectionNames={sectionNames}
           data={data}
           title={title}
           description={description}
@@ -37,6 +40,7 @@ function MealList({
           imgUrl={imgUrl}
           alt={alt}
           setIsMealOpen={setIsMealOpen}
+          options={options}
         />
       )}
     </>

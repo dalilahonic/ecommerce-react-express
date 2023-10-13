@@ -1,19 +1,17 @@
 import classes from './SauceOptions.module.css';
 
-function SauceOptions({ data, title, isDropDownOpen }) {
-  
-  function renderSauceOptions(title, data) {
-    let meal = data.starters.find(
-      (meal) => meal.mealName === title
-    );
-
-    if (!meal) return null;
-
-    return meal.sauces.map((sauce, index) => {
+function SauceOptions({
+  data,
+  title,
+  isDropDownOpen,
+  options,
+}) {
+  function renderSauceOptions() {
+    return options.options.map((sauce, index) => {
       return (
-        <div className={classes.option} key={index}>
+        <div key={index} className={classes.option}>
           <input type='radio' />
-          <label>{sauce.nameOfTheSauce}</label>
+          <label>{sauce.name}</label>
           <p>${sauce.price}</p>
         </div>
       );
@@ -21,9 +19,7 @@ function SauceOptions({ data, title, isDropDownOpen }) {
   }
 
   return (
-    isDropDownOpen && (
-      <div>{renderSauceOptions(title, data)}</div>
-    )
+    isDropDownOpen && <div>{renderSauceOptions()}</div>
   );
 }
 

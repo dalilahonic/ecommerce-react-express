@@ -1,3 +1,12 @@
+@keyframes slideUp {
+  from {
+    bottom: -5%;
+  }
+  to {
+    bottom: 7%;
+  }
+}
+
 button.btnAddToOrder {
   background-color: #212121;
   height: 48px;
@@ -10,14 +19,16 @@ button.btnAddToOrder {
   border-radius: 32px;
   font-weight: 600;
   position: fixed;
-  bottom: 7%;
+  bottom: -5%;
   right: 50%;
   transform: translateX(55%);
   gap: 6px;
-  transition: 0.2s ease-in;
   outline: none;
   border: none;
   box-shadow: 5px 5px 10px 3px rgba(33, 33, 33, 0.2);
+  animation: slideUp 0.4s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
 }
 
 button.btnAddToOrder span:nth-of-type(1) {

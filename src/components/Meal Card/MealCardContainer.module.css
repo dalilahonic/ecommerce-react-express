@@ -1,3 +1,4 @@
+
 div.mealCard {
   width: 48%;
   height: 126px;
@@ -7,6 +8,7 @@ div.mealCard {
   margin-block: 1%;
   border-radius: 4px;
   background-color: white;
+
 }
 
 div.mealCard:hover {
