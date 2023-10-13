@@ -2,22 +2,22 @@ import classes from './Header.module.css';
 
 function Header() {
   return (
-    <div className={classes.header}>
+    <nav className={classes.header}>
       <ul>
         <li>
           <a href='#'>Home</a>
         </li>
         <li>
-          <a href='#'>Home</a>
+          <a href='#'>Menu</a>
         </li>
         <li>
-          <a href='#'>Home</a>
+          <a href='#'>About</a>
         </li>
         <li>
-          <a href='#'>Home</a>
+          <a href='#'>Contact</a>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 }
 

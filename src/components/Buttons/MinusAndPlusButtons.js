@@ -14,22 +14,15 @@ function MinusAndPlusButtons() {
     }
   }
 
-  let disabledButton;
-
-  if (amount === 1) {
-    disabledButton = {
-      cursor: 'not-allowed',
-      backgroundColor: '#F8F8F8',
-      color: '#8D8D8D',
-    };
-  }
-
   return (
     <div className={classes.minusAndPlus}>
       <button
         onClick={handleMinusClick}
-        className={classes.minus}
-        style={disabledButton}
+        className={`${
+          amount === 1
+            ? classes.disabledButton
+            : classes.minus
+        }`}
       >
         -
       </button>
@@ -45,3 +38,12 @@ function MinusAndPlusButtons() {
 }
 
 export default MinusAndPlusButtons;
+
+// const disabledButton =
+//   amount === 1
+//     ? {
+//         cursor: 'not-allowed',
+//         backgroundColor: '#F8F8F8',
+//         color: '#8D8D8D',
+//       }
+//     : {};

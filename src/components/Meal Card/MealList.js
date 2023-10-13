@@ -1,36 +1,31 @@
-import { useState } from 'react';
-import classes from './MealCard.module.css';
+import MealCardContainer from './MealCardContainer';
 import MealPopUp from './MealPopUp';
+import { useState } from 'react';
 
-function MealCard({
+function MealList({
+  data,
   title,
   description,
   price,
   imgUrl,
   alt,
-  data,
 }) {
   const [isMealOpen, setIsMealOpen] = useState(false);
+
   function openPopUp() {
     setIsMealOpen(true);
     document.body.classList.add('scrollLock');
   }
-
   return (
     <>
-      <div className={classes.mealCard} onClick={openPopUp}>
-        <div className={classes.mealInformation}>
-          <p> {title}</p>
-          <p> {description}</p>
-          <p className={classes.price}>
-            {' '}
-            ${price.toFixed(2)}
-          </p>
-        </div>
-        <div className={classes.mealPhoto}>
-          <img src={imgUrl} alt={alt} />
-        </div>
-      </div>
+      <MealCardContainer
+        openPopUp={openPopUp}
+        price={price}
+        title={title}
+        description={description}
+        imgUrl={imgUrl}
+        alt={alt}
+      />
       {isMealOpen && (
         <MealPopUp
           data={data}
@@ -46,4 +41,4 @@ function MealCard({
   );
 }
 
-export default MealCard;
+export default MealList;

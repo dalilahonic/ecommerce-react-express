@@ -10,11 +10,11 @@
 }
 
 :root {
-  --main: '#F6F7F9'
+  --main: '#F6F7F9';
 }
 
 .scrollLock {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 button:hover {

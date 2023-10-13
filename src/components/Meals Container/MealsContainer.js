@@ -1,5 +1,5 @@
 import classes from './MealsContainer.module.css';
-import MealCard from '../Meal Card/MealCard';
+import MealList from '../Meal Card/MealList';
 
 function MealsContainer({
   heading,
@@ -13,7 +13,7 @@ function MealsContainer({
       </div>
       <div className={classes.mealsContainer}>
         {mealsData[heading]?.map((meal, index) => (
-          <MealCard
+          <MealList
             data={mealsData}
             key={index}
             title={meal.mealName}

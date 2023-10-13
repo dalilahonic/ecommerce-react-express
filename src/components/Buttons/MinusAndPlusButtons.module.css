@@ -1,0 +1,36 @@
+div.minusAndPlus {
+  display: flex;
+  align-items: center;
+  padding-inline: 20px;
+  margin-block: 18px;
+}
+button.minus,
+button.plus {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: 26px;
+}
+
+button.minus:hover,
+button.plus:hover {
+  background-color: #dddddd;
+}
+
+p.quantity {
+  font-size: 22px;
+}
+
+.disabledButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  font-size: 26px;
+  cursor: not-allowed !important;
+  color: #8d8d8d;
+  background-color: #f8f8f8;
+}

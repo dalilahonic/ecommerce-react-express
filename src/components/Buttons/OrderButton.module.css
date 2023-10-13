@@ -10,7 +10,7 @@ button.btnAddToOrder {
   border-radius: 32px;
   font-weight: 600;
   position: fixed;
-  bottom: 84px;
+  bottom: 7%;
   right: 50%;
   transform: translateX(55%);
   gap: 6px;
@@ -31,4 +31,3 @@ button.btnAddToOrder span:nth-of-type(2) {
 button.btnAddToOrder:hover {
   background-color: #353535;
 }
-

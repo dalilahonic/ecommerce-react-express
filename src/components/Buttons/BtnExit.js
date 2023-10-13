@@ -3,6 +3,7 @@ import classes from './BtnExit.module.css';
 function BtnExit({ setIsMealOpen }) {
   function handleClick() {
     setIsMealOpen(false);
+    document.body.classList.remove('scrollLock');
   }
 
   return (

@@ -1,21 +1,4 @@
-div.wouldYouLikeSauce {
-  height: 80px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding-inline: 10px;
-  position: relative;
-}
 
-div.wouldYouLikeSauce span {
-  position: absolute;
-  display: flex;
-  right: 5%;
-}
-
-div.wouldYouLikeSauce span:hover {
-  cursor: pointer;
-}
 
 div.option {
   width: 100%;

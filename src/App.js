@@ -41,7 +41,7 @@ function App() {
       .join(' ');
   }
 
-  const arr = [
+  const sectionNames = [
     'starters',
     'burgers_and_sandwiches',
     'salads',
@@ -52,26 +52,21 @@ function App() {
     'desserts',
     'beverages',
   ];
+
   return (
     <>
       <Header />
       <ImageComponent />
-      <SearchBar links={arr} />
-      <div
-        style={{
-          backgroundColor: 'var(main)',
-          paddingTop: '50px',
-        }}
-      >
-        {arr.map((el, index) => (
-          <MealsContainer
-            key={index}
-            mealsData={mealsData}
-            heading={el}
-            transformedHeading={transformHeading(el)}
-          />
-        ))}
-      </div>
+      <SearchBar links={sectionNames} />
+
+      {sectionNames.map((el, index) => (
+        <MealsContainer
+          key={index}
+          mealsData={mealsData}
+          heading={el}
+          transformedHeading={transformHeading(el)}
+        />
+      ))}
     </>
   );
 }

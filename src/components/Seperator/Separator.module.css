@@ -1,0 +1,13 @@
+div.seperator {
+  width: 100%;
+}
+
+div.grey {
+  background-color: #f1f1f1;
+  height: 30px;
+}
+
+div.white {
+  background-color: white;
+  height: 80px;
+}
