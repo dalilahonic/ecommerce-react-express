@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import MealsContainer from './components/Meals Container/MealsContainer';
 import SearchBar from './components/Search Bar/SearchBar';
 import ImageComponent from './components/Image Component/ImageComponent';
+import SectionsContext from './context/SectionsContext';
 
 function App() {
   const [mealsData, setMealsData] = useState({});
@@ -62,10 +63,11 @@ function App() {
     <>
       <Header />
       <ImageComponent />
-      <SearchBar
-        links={sectionNames}
-        onChangeInputValue={onChangeInputValue}
-      />
+      <SectionsContext.Provider value={sectionNames}>
+        <SearchBar
+          onChangeInputValue={onChangeInputValue}
+        />
+      </SectionsContext.Provider>
 
       {sectionNames.map((el, index) => (
         <MealsContainer

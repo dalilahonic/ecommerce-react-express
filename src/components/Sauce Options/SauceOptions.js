@@ -8,11 +8,14 @@ function SauceOptions({
 }) {
   function renderSauceOptions() {
     return options.options.map((sauce, index) => {
+      console.log(options);
       return (
         <div key={index} className={classes.option}>
           <input type='radio' />
-          <label>{sauce.name}</label>
-          <p>${sauce.price}</p>
+          <label>{sauce.name || sauce}</label>
+          {sauce.price !== undefined && (
+            <p>${sauce.price}</p>
+          )}
         </div>
       );
     });

@@ -1,14 +1,26 @@
 import classes from './SearchBar.module.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import SectionsContext from '../../context/SectionsContext';
+import SearchIcon from './SearchIcon';
+import SearchInput from './SearchInput';
+import Links from './Links';
 
-function SearchBar({ links, onChangeInputValue }) {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+function SearchBar({ onChangeInputValue }) {
   const [isDropdownOpen, setIsDropdownOpen] =
     useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  function handleExit() {
+    setIsSearchOpen(false);
+  }
+
+  function handleClickScroll(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   function transformLink(link) {
     return link
@@ -21,75 +33,27 @@ function SearchBar({ links, onChangeInputValue }) {
       .join(' ');
   }
 
-  function handleClick() {
-    setIsSearchOpen(true);
-  }
-
-  function handleExitClick() {
-    setIsSearchOpen(false);
-  }
-
-  function handleChange(value) {
-    setInputValue(value);
-    onChangeInputValue(value);
-  }
-
-  function handleClickScroll(id) {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
+  const sections = useContext(SectionsContext);
 
   return (
     <div className={classes.navigation}>
       <div className={classes.searchBarParent}>
-        <div
-          onClick={handleClick}
-          className={`${classes.search} ${
-            isSearchOpen && classes.openSearch
-          }`}
-        >
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </div>
-
+        <SearchIcon
+          isSearchOpen={isSearchOpen}
+          setIsSearchOpen={setIsSearchOpen}
+        />
         {isSearchOpen ? (
-          <div className={classes.inputSearchDiv}>
-            <input
-              value={inputValue}
-              onChange={(e) => handleChange(e.target.value)}
-              className={`${
-                isSearchOpen && classes.openSearch
-              }`}
-              placeholder='Search'
-            />
-            <span onClick={handleExitClick}> X </span>
-          </div>
+          <SearchInput
+            onChangeInputValue={onChangeInputValue}
+            handleExit={handleExit}
+          />
         ) : (
           <div className={classes.links}>
-            <ul>
-              {links.slice(0, 7).map((link, index) => {
-                return index < 6 ? (
-                  <li
-                    onClick={() =>
-                      handleClickScroll(`meal${index}`)
-                    }
-                    key={index}
-                  >
-                    {transformLink(link)}
-                  </li>
-                ) : (
-                  <li
-                    key={index}
-                    onMouseEnter={() =>
-                      setIsDropdownOpen(true)
-                    }
-                  >
-                    More
-                  </li>
-                );
-              })}
-            </ul>
+            <Links
+              transformLink={transformLink}
+              handleClickScroll={handleClickScroll}
+              setIsDropdownOpen={setIsDropdownOpen}
+            />
             {isDropdownOpen && (
               <div
                 onMouseLeave={() =>
@@ -98,7 +62,7 @@ function SearchBar({ links, onChangeInputValue }) {
                 className={classes.dropdown}
               >
                 <ul>
-                  {links.slice(6).map((link, index) => {
+                  {sections.slice(6).map((link, index) => {
                     return (
                       <li
                         key={index}

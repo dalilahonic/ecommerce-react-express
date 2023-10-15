@@ -1,0 +1,25 @@
+div.search {
+  height: 49px;
+  aspect-ratio: 1/1;
+  border-radius: 4px;
+  border: 1px solid rgba(108, 109, 110, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+
+div.search:hover {
+  border: 1px solid #6e6f70;
+  cursor: pointer;
+}
+
+div.search.openSearch {
+  border: 1px solid #6e6f70;
+  border-right: 0px;
+  border-radius: 4px 0px 0px 4px;
+}
+
+div.search i {
+  font-size: 20px;
+}
