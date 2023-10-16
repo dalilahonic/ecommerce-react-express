@@ -11,7 +11,7 @@ function SauceOptions({
       console.log(options);
       return (
         <div key={index} className={classes.option}>
-          <input type='radio' />
+          <input type='checkbox' />
           <label>{sauce.name || sauce}</label>
           {sauce.price !== undefined && (
             <p>${sauce.price}</p>

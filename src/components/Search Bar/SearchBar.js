@@ -5,6 +5,7 @@ import SectionsContext from '../../context/SectionsContext';
 import SearchIcon from './SearchIcon';
 import SearchInput from './SearchInput';
 import Links from './Links';
+import Dropdown from './Dropdown';
 
 function SearchBar({ onChangeInputValue }) {
   const [isDropdownOpen, setIsDropdownOpen] =
@@ -55,29 +56,11 @@ function SearchBar({ onChangeInputValue }) {
               setIsDropdownOpen={setIsDropdownOpen}
             />
             {isDropdownOpen && (
-              <div
-                onMouseLeave={() =>
-                  setIsDropdownOpen(false)
-                }
-                className={classes.dropdown}
-              >
-                <ul>
-                  {sections.slice(6).map((link, index) => {
-                    return (
-                      <li
-                        key={index}
-                        onClick={() =>
-                          handleClickScroll(
-                            `meal${index + 6}`
-                          )
-                        }
-                      >
-                        {transformLink(link)}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
+              <Dropdown
+                transformLink={transformLink}
+                setIsDropdownOpen={setIsDropdownOpen}
+                handleClickScroll={handleClickScroll}
+              />
             )}
           </div>
         )}

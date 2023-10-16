@@ -81,20 +81,3 @@ div.links li:hover {
   }
 }
 
-div.dropdown {
-  padding: 20px;
-  width: 150px;
-  position: absolute;
-  right: -10%;
-  top: 100%;
-  z-index: 56;
-  background-color: var(--main);
-  border: 1px solid #c5c6c7;
-  animation: slideIn 1s ease-in-out;
-}
-
-div.dropdown ul {
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
-}

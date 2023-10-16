@@ -7,7 +7,6 @@ function Links({
   handleClickScroll,
   setIsDropdownOpen,
 }) {
-  const sections = useContext(SectionsContext);
 
   return (
     <div className={classes.links}>
