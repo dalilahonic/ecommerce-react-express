@@ -1,17 +1,18 @@
 import classes from './SearchInput.module.css';
 import { useState } from 'react';
 
-function SearchInput({ isSearchOpen, onChangeInputValue , handleExit}) {
+function SearchInput({
+  isSearchOpen,
+  onChangeInputValue,
+  onExit,
+}) {
   const [inputValue, setInputValue] = useState('');
-
-  function handleExitClick() {
-    handleExit()
-  }
 
   function handleChange(value) {
     setInputValue(value);
     onChangeInputValue(value);
   }
+
   return (
     <div className={classes.inputSearchDiv}>
       <input
@@ -20,7 +21,7 @@ function SearchInput({ isSearchOpen, onChangeInputValue , handleExit}) {
         className={`${isSearchOpen && classes.openSearch}`}
         placeholder='Search'
       />
-      <span onClick={handleExitClick}> X </span>
+      <span onClick={() => onExit()}> X </span>
     </div>
   );
 }

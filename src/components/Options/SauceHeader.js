@@ -4,7 +4,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 function SauceHeader({ openDropDown, text }) {
   return (
-    <div className={classes.wouldYouLikeSauce}>
+    <div className={classes.options}>
       <p>{text}</p>
       <span onClick={openDropDown}>
         <p>Optional</p>

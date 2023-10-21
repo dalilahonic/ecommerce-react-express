@@ -1,18 +1,17 @@
 import classes from './SauceOptions.module.css';
 
 function SauceOptions({
-  data,
-  title,
   isDropDownOpen,
   options,
 }) {
   function renderSauceOptions() {
     return options.options.map((sauce, index) => {
-      console.log(options);
       return (
         <div key={index} className={classes.option}>
-          <input type='checkbox' />
-          <label>{sauce.name || sauce}</label>
+          <label>
+            <input type='checkbox' />
+            {sauce.name || sauce}
+          </label>
           {sauce.price !== undefined && (
             <p>${sauce.price}</p>
           )}

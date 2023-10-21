@@ -3,7 +3,8 @@ import MinusAndPlusButtons from '../Buttons/MinusAndPlusButtons';
 import OrderButton from '../Buttons/OrderButton';
 import BtnExit from '../Buttons/BtnExit';
 import Seperator from '../Seperator/Separator';
-import SauceMain from '../Sauce Options/SauceMain';
+import SauceMain from '../Options/SauceMain';
+import PopUpInfo from './PopUpInfo';
 
 function MealPopUp({
   title,
@@ -12,24 +13,21 @@ function MealPopUp({
   imgUrl,
   alt,
   setIsMealOpen,
-  data,
-  sectionNames,
   options,
 }) {
   return (
     <div className={classes.mealOverlay}>
       <div className={classes.mealPopUp}>
-        <img src={imgUrl} alt={alt} />
-        <h1>{title}</h1>
-        <p className={classes.price}>${price.toFixed(2)}</p>
-        <p>{description}</p>
-        <MinusAndPlusButtons />
-        <Seperator classClr='grey' />
-        <SauceMain
-          options={options}
-          data={data}
+        <PopUpInfo
+          imgUrl={imgUrl}
+          alt={alt}
+          price={price}
+          description={description}
           title={title}
         />
+        <MinusAndPlusButtons />
+        <Seperator classClr='grey' />
+        <SauceMain options={options} />
         <BtnExit setIsMealOpen={setIsMealOpen} />
         <Seperator classClr='grey' />
         <Seperator classClr='white' />

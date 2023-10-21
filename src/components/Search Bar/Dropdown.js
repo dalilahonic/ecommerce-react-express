@@ -1,13 +1,15 @@
 import { useContext } from 'react';
 import classes from './Dropdown.module.css';
 import SectionsContext from '../../context/SectionsContext';
+import useTransformText from '../../hooks/useTransformText';
 
 function Dropdown({
-  transformLink,
   setIsDropdownOpen,
   handleClickScroll,
 }) {
-  const sections = useContext(SectionsContext);
+  let sections = useContext(SectionsContext);
+  sections = sections.slice(6);
+  const transformedLinks = useTransformText(sections);
 
   return (
     <div
@@ -15,7 +17,7 @@ function Dropdown({
       className={classes.dropdown}
     >
       <ul>
-        {sections.slice(6).map((link, index) => {
+        {sections.map((_, index) => {
           return (
             <li
               key={index}
@@ -23,7 +25,7 @@ function Dropdown({
                 handleClickScroll(`meal${index + 6}`)
               }
             >
-              {transformLink(link)}
+              {transformedLinks[index]}
             </li>
           );
         })}

@@ -3,14 +3,12 @@ import MealPopUp from './MealPopUp';
 import { useState } from 'react';
 
 function MealList({
-  data,
   title,
   description,
   price,
   imgUrl,
   alt,
   id,
-  sectionNames,
   options,
 }) {
   const [isMealOpen, setIsMealOpen] = useState(false);
@@ -32,8 +30,6 @@ function MealList({
       />
       {isMealOpen && (
         <MealPopUp
-          sectionNames={sectionNames}
-          data={data}
           title={title}
           description={description}
           price={price}

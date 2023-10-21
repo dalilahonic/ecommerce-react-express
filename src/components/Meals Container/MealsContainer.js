@@ -1,28 +1,22 @@
 import classes from './MealsContainer.module.css';
 import MealList from '../Meal Card/MealList';
-import { useEffect, useState } from 'react';
+import useFilter from '../../hooks/useFilter';
 
 function MealsContainer({
-  heading,
   mealsData,
-  transformedHeading,
+  heading,
   inputValue,
+  transformedHeading,
   id,
   sectionNames,
 }) {
-  const [filteredData, setFilteredData] = useState({});
-  useEffect(() => {
-    const filtered = mealsData[heading]?.filter((el) => {
-      return el.mealName
-        .toLowerCase()
-        .includes(inputValue.toLowerCase());
-    });
 
-    setFilteredData((prevState) => ({
-      ...prevState,
-      [heading]: filtered,
-    }));
-  }, [inputValue, mealsData, heading]);
+  const [filteredData] = useFilter(
+    mealsData,
+    heading,
+    inputValue,
+    'mealName'
+  );
 
   const hasMatchingItems =
     filteredData[heading]?.length > 0;

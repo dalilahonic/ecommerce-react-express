@@ -1,59 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Header from './components/Header/Header';
 import MealsContainer from './components/Meals Container/MealsContainer';
-import SearchBar from './components/Search Bar/SearchBar';
 import ImageComponent from './components/Image Component/ImageComponent';
 import SectionsContext from './context/SectionsContext';
+import useFetch from './hooks/useFetch';
+import useTransformText from './hooks/useTransformText';
+import Search from './components/Search Bar/Search';
+
+const sectionNames = [
+  'starters',
+  'burgers_and_sandwiches',
+  'salads',
+  'noodles_and_pasta',
+  'mainCourses',
+  'specialties',
+  'sides',
+  'desserts',
+  'beverages',
+];
 
 function App() {
-  const [mealsData, setMealsData] = useState({});
   const [inputValue, setInputValue] = useState('');
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await fetch(
-          'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
-        );
+  const [mealsData] = useFetch(
+    'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
+  );
 
-        if (!res.ok) {
-          throw new Error('something went wrong');
-        }
-
-        let data = await res.json();
-
-        for (let obj of Object.values(data)) {
-          setMealsData(obj);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getData();
-  }, []);
-
-  function transformHeading(heading) {
-    return heading
-      .split('_')
-      .map(
-        (el) =>
-          el.slice(0, 1).toUpperCase() +
-          el.slice(1).toLowerCase()
-      )
-      .join(' ');
-  }
-
-  const sectionNames = [
-    'starters',
-    'burgers_and_sandwiches',
-    'salads',
-    'noodles_and_pasta',
-    'mainCourses',
-    'specialties',
-    'sides',
-    'desserts',
-    'beverages',
-  ];
+  const transformedHeading = useTransformText(sectionNames);
 
   function onChangeInputValue(value) {
     setInputValue(value);
@@ -64,11 +37,8 @@ function App() {
       <Header />
       <ImageComponent />
       <SectionsContext.Provider value={sectionNames}>
-        <SearchBar
-          onChangeInputValue={onChangeInputValue}
-        />
+        <Search onChangeInputValue={onChangeInputValue} />
       </SectionsContext.Provider>
-
       {sectionNames.map((el, index) => (
         <MealsContainer
           id={`meal${index}`}
@@ -76,7 +46,7 @@ function App() {
           mealsData={mealsData}
           heading={el}
           sectionNames={sectionNames}
-          transformedHeading={transformHeading(el)}
+          transformedHeading={transformedHeading[index]}
           inputValue={inputValue}
         />
       ))}

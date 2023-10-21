@@ -1,20 +1,16 @@
 import classes from './SearchBar.module.css';
-
-import { useContext, useState } from 'react';
-import SectionsContext from '../../context/SectionsContext';
-import SearchIcon from './SearchIcon';
 import SearchInput from './SearchInput';
-import Links from './Links';
 import Dropdown from './Dropdown';
+import Links from './Links';
+import { useState } from 'react';
 
-function SearchBar({ onChangeInputValue }) {
+function SearchBar({
+  isSearchOpen,
+  onChangeInputValue,
+  onExit,
+}) {
   const [isDropdownOpen, setIsDropdownOpen] =
     useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  function handleExit() {
-    setIsSearchOpen(false);
-  }
 
   function handleClickScroll(id) {
     const element = document.getElementById(id);
@@ -23,50 +19,24 @@ function SearchBar({ onChangeInputValue }) {
     }
   }
 
-  function transformLink(link) {
-    return link
-      .split('_')
-      .map(
-        (el) =>
-          el.slice(0, 1).toUpperCase() +
-          el.slice(1).toLowerCase()
-      )
-      .join(' ');
-  }
-
-  const sections = useContext(SectionsContext);
-
-  return (
-    <div className={classes.navigation}>
-      <div className={classes.searchBarParent}>
-        <SearchIcon
-          isSearchOpen={isSearchOpen}
-          setIsSearchOpen={setIsSearchOpen}
+  return isSearchOpen ? (
+    <SearchInput
+      onChangeInputValue={onChangeInputValue}
+      onExit={onExit}
+    />
+  ) : (
+    <div className={classes.links}>
+      <Links
+        handleClickScroll={handleClickScroll}
+        setIsDropdownOpen={setIsDropdownOpen}
+      />
+      {isDropdownOpen && (
+        <Dropdown
+        handleClickScroll={handleClickScroll}
+        setIsDropdownOpen={setIsDropdownOpen}
         />
-        {isSearchOpen ? (
-          <SearchInput
-            onChangeInputValue={onChangeInputValue}
-            handleExit={handleExit}
-          />
-        ) : (
-          <div className={classes.links}>
-            <Links
-              transformLink={transformLink}
-              handleClickScroll={handleClickScroll}
-              setIsDropdownOpen={setIsDropdownOpen}
-            />
-            {isDropdownOpen && (
-              <Dropdown
-                transformLink={transformLink}
-                setIsDropdownOpen={setIsDropdownOpen}
-                handleClickScroll={handleClickScroll}
-              />
-            )}
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }
-
 export default SearchBar;

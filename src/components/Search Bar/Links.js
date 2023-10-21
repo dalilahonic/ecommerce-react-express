@@ -1,17 +1,17 @@
 import { useContext } from 'react';
 import SectionsContext from '../../context/SectionsContext';
 import classes from './Links.module.css';
+import useTransformText from '../../hooks/useTransformText';
 
-function Links({
-  transformLink,
-  handleClickScroll,
-  setIsDropdownOpen,
-}) {
+function Links({ handleClickScroll, setIsDropdownOpen }) {
+  const sections = useContext(SectionsContext);
+
+  const transformed = useTransformText(sections);
 
   return (
     <div className={classes.links}>
       <ul>
-        {sections.slice(0, 7).map((link, index) => {
+        {sections.slice(0, 7).map((_, index) => {
           return index < 6 ? (
             <li
               onClick={() =>
@@ -19,7 +19,7 @@ function Links({
               }
               key={index}
             >
-              {transformLink(link)}
+              {transformed[index]}
             </li>
           ) : (
             <li

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SauceHeader from './SauceHeader';
 import SauceOptions from './SauceOptions';
 
-function SauceMain({ data, title, options }) {
+function SauceMain({ options }) {
   const [isDropDownOpen, setIsDropDownOpen] =
     useState(false);
 
@@ -18,8 +18,6 @@ function SauceMain({ data, title, options }) {
       />
       <SauceOptions
         options={options}
-        data={data}
-        title={title}
         isDropDownOpen={isDropDownOpen}
       />
     </>
