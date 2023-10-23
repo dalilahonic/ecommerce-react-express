@@ -26,6 +26,8 @@ function App() {
     'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
   );
 
+  console.log(mealsData);
+
   const transformedHeading = useTransformText(sectionNames);
 
   function onChangeInputValue(value) {

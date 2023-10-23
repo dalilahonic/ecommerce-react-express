@@ -1,8 +1,6 @@
 import classes from './MinusAndPlusButtons.module.css';
-import { useState } from 'react';
 
-function MinusAndPlusButtons() {
-  const [amount, setAmount] = useState(1);
+function MinusAndPlusButtons({amount, setAmount}) {
 
   function handlePlusClick() {
     setAmount((prev) => prev + 1);

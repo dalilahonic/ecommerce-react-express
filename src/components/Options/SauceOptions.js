@@ -1,9 +1,6 @@
 import classes from './SauceOptions.module.css';
 
-function SauceOptions({
-  isDropDownOpen,
-  options,
-}) {
+function SauceOptions({ isDropDownOpen, options }) {
   function renderSauceOptions() {
     return options.options.map((sauce, index) => {
       return (

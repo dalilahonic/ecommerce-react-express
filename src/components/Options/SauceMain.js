@@ -9,6 +9,7 @@ function SauceMain({ options }) {
   function openDropDown() {
     setIsDropDownOpen((prev) => !prev);
   }
+  console.log(options);
 
   return (
     <>

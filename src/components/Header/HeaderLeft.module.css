@@ -1,0 +1,29 @@
+nav.header {
+  height: 12vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: white;
+  flex: 3;
+}
+
+nav.header ul {
+  align-self: center;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+nav.header ul li {
+  padding: 5%;
+  display: inline;
+  font-size: 18px;
+}
+
+nav.header ul li a {
+  color: #605e5e;
+}

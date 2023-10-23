@@ -1,24 +1,23 @@
 import classes from './Header.module.css';
+import { useState } from 'react';
+import HeaderLeft from './HeaderLeft';
+import HeaderRight from './HeaderRight';
+import CartWindow from './CartWindow';
 
 function Header() {
+  const [isCartWindowOpen, setIsCartWindowOpen] =
+    useState(false);
 
   return (
-    <nav className={classes.header}>
-      <ul>
-        <li>
-          <a href='#'>Home</a>
-        </li>
-        <li>
-          <a href='#'>Menu</a>
-        </li>
-        <li>
-          <a href='#'>About</a>
-        </li>
-        <li>
-          <a href='#'>Contact</a>
-        </li>
-      </ul>
-    </nav>
+    <>
+      <div className={classes.mainHeader}>
+        <HeaderLeft />
+        <HeaderRight
+          setIsCartWindowOpen={setIsCartWindowOpen}
+        />
+        {isCartWindowOpen && <CartWindow />}
+      </div>
+    </>
   );
 }
 

@@ -5,6 +5,7 @@ import BtnExit from '../Buttons/BtnExit';
 import Seperator from '../Seperator/Separator';
 import SauceMain from '../Options/SauceMain';
 import PopUpInfo from './PopUpInfo';
+import { useState } from 'react';
 
 function MealPopUp({
   title,
@@ -15,6 +16,8 @@ function MealPopUp({
   setIsMealOpen,
   options,
 }) {
+  const [amount, setAmount] = useState(1);
+
   return (
     <div className={classes.mealOverlay}>
       <div className={classes.mealPopUp}>
@@ -25,13 +28,16 @@ function MealPopUp({
           description={description}
           title={title}
         />
-        <MinusAndPlusButtons />
+        <MinusAndPlusButtons
+          amount={amount}
+          setAmount={setAmount}
+        />
         <Seperator classClr='grey' />
         <SauceMain options={options} />
         <BtnExit setIsMealOpen={setIsMealOpen} />
         <Seperator classClr='grey' />
         <Seperator classClr='white' />
-        <OrderButton price={price} />
+        <OrderButton price={price} amount={amount} />
       </div>
     </div>
   );
