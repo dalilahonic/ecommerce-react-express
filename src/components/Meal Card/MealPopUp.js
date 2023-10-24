@@ -3,9 +3,9 @@ import MinusAndPlusButtons from '../Buttons/MinusAndPlusButtons';
 import OrderButton from '../Buttons/OrderButton';
 import BtnExit from '../Buttons/BtnExit';
 import Seperator from '../Seperator/Separator';
-import SauceMain from '../Options/SauceMain';
 import PopUpInfo from './PopUpInfo';
 import { useState } from 'react';
+import MainOptions from '../Options/MainOptions';
 
 function MealPopUp({
   title,
@@ -33,7 +33,7 @@ function MealPopUp({
           setAmount={setAmount}
         />
         <Seperator classClr='grey' />
-        <SauceMain options={options} />
+        {options && <MainOptions options={options} />}
         <BtnExit setIsMealOpen={setIsMealOpen} />
         <Seperator classClr='grey' />
         <Seperator classClr='white' />

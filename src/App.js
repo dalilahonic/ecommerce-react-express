@@ -12,7 +12,7 @@ const sectionNames = [
   'burgers_and_sandwiches',
   'salads',
   'noodles_and_pasta',
-  'mainCourses',
+  'main_courses',
   'specialties',
   'sides',
   'desserts',
@@ -25,8 +25,6 @@ function App() {
   const [mealsData] = useFetch(
     'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
   );
-
-  console.log(mealsData);
 
   const transformedHeading = useTransformText(sectionNames);
 
