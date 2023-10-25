@@ -1,8 +1,8 @@
-import classes from './MealsContainer.module.css';
-import MealList from '../Meal Card/MealList';
-import useFilter from '../../hooks/useFilter';
+import classes from './MenuDisplay.module.css';
+import useFilter from '../../../hooks/useFilter';
+import MainMeal from '../Main/MainMeal';
 
-function MealsContainer({
+function MenuDisplay({
   mealsData,
   heading,
   inputValue,
@@ -10,7 +10,6 @@ function MealsContainer({
   id,
   sectionNames,
 }) {
-
   const [filteredData] = useFilter(
     mealsData,
     heading,
@@ -31,7 +30,7 @@ function MealsContainer({
             </div>
             <div className={classes.mealsContainer}>
               {filteredData[heading]?.map((meal, index) => (
-                <MealList
+                <MainMeal
                   sectionNames={sectionNames}
                   data={mealsData}
                   key={index}
@@ -51,4 +50,4 @@ function MealsContainer({
   );
 }
 
-export default MealsContainer;
+export default MenuDisplay;

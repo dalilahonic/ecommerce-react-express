@@ -1,6 +1,6 @@
-import classes from './PopUpInfo.module.css';
+import classes from './PopupInfo.module.css';
 
-function PopUpInfo({
+function PopupInfo({
   imgUrl,
   alt,
   title,
@@ -17,4 +17,4 @@ function PopUpInfo({
   );
 }
 
-export default PopUpInfo;
+export default PopupInfo;

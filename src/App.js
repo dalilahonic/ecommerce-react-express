@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import Header from './components/Header/Header';
-import MealsContainer from './components/Meals Container/MealsContainer';
+import MealsContainer from './components/Meal Card/Menu Display/MenuDisplay';
 import ImageComponent from './components/Image Component/ImageComponent';
 import SectionsContext from './context/SectionsContext';
 import useFetch from './hooks/useFetch';
 import useTransformText from './hooks/useTransformText';
 import Search from './components/Search Bar/Search';
+import MenuDisplay from './components/Meal Card/Menu Display/MenuDisplay';
 
 const sectionNames = [
   'starters',
@@ -40,7 +41,7 @@ function App() {
         <Search onChangeInputValue={onChangeInputValue} />
       </SectionsContext.Provider>
       {sectionNames.map((el, index) => (
-        <MealsContainer
+        <MenuDisplay
           id={`meal${index}`}
           key={index}
           mealsData={mealsData}

@@ -1,8 +1,8 @@
-import MealCardContainer from './MealCardContainer';
-import MealPopUp from './MealPopUp';
+import MealItem from '../Card/MealItem';
+import MealPopup from '../Popup/MealPopup';
 import { useState } from 'react';
 
-function MealList({
+function MainMeal({
   title,
   description,
   price,
@@ -19,7 +19,7 @@ function MealList({
   }
   return (
     <>
-      <MealCardContainer
+      <MealItem
         id={id}
         openPopUp={openPopUp}
         price={price}
@@ -29,7 +29,7 @@ function MealList({
         alt={alt}
       />
       {isMealOpen && (
-        <MealPopUp
+        <MealPopup
           title={title}
           description={description}
           price={price}
@@ -43,4 +43,4 @@ function MealList({
   );
 }
 
-export default MealList;
+export default MainMeal;

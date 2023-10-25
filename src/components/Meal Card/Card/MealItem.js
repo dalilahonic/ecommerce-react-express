@@ -1,6 +1,6 @@
-import classes from './MealCardContainer.module.css';
+import classes from './MealItem.module.css';
 
-function MealCardContainer({
+function MealItem({
   title,
   description,
   price,
@@ -21,4 +21,4 @@ function MealCardContainer({
     </div>
   );
 }
-export default MealCardContainer;
+export default MealItem;

@@ -1,8 +1,8 @@
-import Options from './Options';
 import { useState } from 'react';
-import classes from './Options.module.css';
+import HeaderOptions from './HeaderOptions';
+import Options from './Options';
 
-function MainOptions({ options }) {
+function MainOptions({ options, onChecked }) {
   const [isOpenData, setIsOpenData] = useState([]);
 
   function onOpen(isOpen, index) {
@@ -18,26 +18,27 @@ function MainOptions({ options }) {
     });
   }
 
+  function handleChecked(isChecked, price, name) {
+    onChecked(isChecked, price, name)
+  }
+
   return (
     <>
       {options.map((obj, index) => (
         <div key={index}>
-          <Options
+          <HeaderOptions
             onOpen={onOpen}
             title={obj.write}
             index={index}
           />
           {isOpenData[index]?.isOpen &&
             obj.options.map((option, index) => (
-              <div className={classes.option} key={index}>
-                <label>
-                  <input type='checkbox' />
-                  {option.name}
-                </label>
-                {option.price !== undefined && (
-                  <p>${option.price}</p>
-                )}
-              </div>
+              <Options
+                onChecked={handleChecked}
+                key={index}
+                name={option.name}
+                price={option.price}
+              />
             ))}
         </div>
       ))}
