@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import Header from './components/Header/Header';
-import MealsContainer from './components/Meal Card/Menu Display/MenuDisplay';
 import ImageComponent from './components/Image Component/ImageComponent';
 import SectionsContext from './context/SectionsContext';
 import useFetch from './hooks/useFetch';
 import useTransformText from './hooks/useTransformText';
-import Search from './components/Search Bar/Search';
+import MainSearch from './components/Search Bar/Main/MainSearch';
 import MenuDisplay from './components/Meal Card/Menu Display/MenuDisplay';
 
 const sectionNames = [
@@ -38,7 +37,9 @@ function App() {
       <Header />
       <ImageComponent />
       <SectionsContext.Provider value={sectionNames}>
-        <Search onChangeInputValue={onChangeInputValue} />
+        <MainSearch
+          onChangeInputValue={onChangeInputValue}
+        />
       </SectionsContext.Provider>
       {sectionNames.map((el, index) => (
         <MenuDisplay

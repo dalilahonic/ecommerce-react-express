@@ -1,9 +1,9 @@
-import classes from './Search.module.css';
+import classes from './MainSearch.module.css';
 import { useState } from 'react';
-import SearchIcon from './SearchIcon';
-import SearchBar from './SearchBar';
+import SearchIcon from '../Search Icon/SearchIcon';
+import SearchBar from '../Search/SearchBar';
 
-function Search({ onChangeInputValue }) {
+function MainSearch({ onChangeInputValue }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   function handleExit() {
@@ -29,4 +29,4 @@ function Search({ onChangeInputValue }) {
   );
 }
 
-export default Search;
+export default MainSearch;

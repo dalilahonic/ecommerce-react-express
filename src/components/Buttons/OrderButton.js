@@ -1,15 +1,32 @@
 import classes from './OrderButton.module.css';
+import useCalculatePrice from '../../hooks/useCalculatePrice';
+import { useContext } from 'react';
+import OrderContext from '../../context/OrderContext';
 
-function OrderButton({ price, amount, optionsPrice }) {
-  let finalPrice = price * amount;
-  const priceOfOptions = optionsPrice.reduce(
-    (acc, curr) => acc + curr.price,
-    0
+function OrderButton({
+  price,
+  amount,
+  optionsPrice,
+  onOrder,
+}) {
+  let finalPrice = useCalculatePrice(
+    price,
+    amount,
+    optionsPrice
   );
-  finalPrice += priceOfOptions * amount;
+
+  const order = useContext(OrderContext);
+  // console.log(order);
+
+  function handleClick() {
+    onOrder(finalPrice);
+  }
 
   return (
-    <button className={classes.btnAddToOrder}>
+    <button
+      onClick={() => handleClick()}
+      className={classes.btnAddToOrder}
+    >
       <span>Add to Order</span>
       <span>${finalPrice.toFixed(2)}</span>
     </button>

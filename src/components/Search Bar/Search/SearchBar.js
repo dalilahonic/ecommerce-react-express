@@ -1,8 +1,8 @@
 import classes from './SearchBar.module.css';
-import SearchInput from './SearchInput';
-import Dropdown from './Dropdown';
-import Links from './Links';
+import Dropdown from '../Dropdown/Dropdown';
 import { useState } from 'react';
+import NavBar from '../Nav Bar/NavBar';
+import SearchInput from '../Search Input/SearchInput';
 
 function SearchBar({
   isSearchOpen,
@@ -26,14 +26,14 @@ function SearchBar({
     />
   ) : (
     <div className={classes.links}>
-      <Links
+      <NavBar
         handleClickScroll={handleClickScroll}
         setIsDropdownOpen={setIsDropdownOpen}
       />
       {isDropdownOpen && (
         <Dropdown
-        handleClickScroll={handleClickScroll}
-        setIsDropdownOpen={setIsDropdownOpen}
+          handleClickScroll={handleClickScroll}
+          setIsDropdownOpen={setIsDropdownOpen}
         />
       )}
     </div>

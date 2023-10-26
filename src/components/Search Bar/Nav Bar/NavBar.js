@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import SectionsContext from '../../context/SectionsContext';
-import classes from './Links.module.css';
-import useTransformText from '../../hooks/useTransformText';
+import SectionsContext from '../../../context/SectionsContext';
+import classes from './NavBar.module.css';
+import useTransformText from '../../../hooks/useTransformText';
 
-function Links({ handleClickScroll, setIsDropdownOpen }) {
+function NavBar({ handleClickScroll, setIsDropdownOpen }) {
   const sections = useContext(SectionsContext);
 
   const transformed = useTransformText(sections);
@@ -35,4 +35,4 @@ function Links({ handleClickScroll, setIsDropdownOpen }) {
   );
 }
 
-export default Links;
+export default NavBar;
