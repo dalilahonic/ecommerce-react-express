@@ -8,7 +8,6 @@ function MenuDisplay({
   inputValue,
   transformedHeading,
   id,
-  sectionNames,
 }) {
   const [filteredData] = useFilter(
     mealsData,
@@ -31,7 +30,6 @@ function MenuDisplay({
             <div className={classes.mealsContainer}>
               {filteredData[heading]?.map((meal, index) => (
                 <MainMeal
-                  sectionNames={sectionNames}
                   data={mealsData}
                   key={index}
                   title={meal.mealName}

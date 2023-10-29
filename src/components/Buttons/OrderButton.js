@@ -15,8 +15,6 @@ function OrderButton({
     optionsPrice
   );
 
-  const order = useContext(OrderContext);
-  // console.log(order);
 
   function handleClick() {
     onOrder(finalPrice);

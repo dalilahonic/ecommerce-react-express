@@ -3,7 +3,7 @@ import MinusAndPlusButtons from '../../Buttons/MinusAndPlusButtons';
 import OrderButton from '../../Buttons/OrderButton';
 import BtnExit from '../../Buttons/BtnExit';
 import Seperator from '../../Seperator/Separator';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import MainOptions from '../../Options/MainOptions';
 import PopupInfo from './PopupInfo';
 import OrderContext from '../../../context/OrderContext';
@@ -19,6 +19,11 @@ function MealPopup({
 }) {
   const [amount, setAmount] = useState(1);
   const [optionsPrice, setOptionsPrice] = useState([]);
+  const [orderInfo, setOrderInfo] = useState({
+    title: title,
+    price: 0,
+    amount: amount,
+  });
 
   function handleChecked(isChecked, price, name) {
     setOptionsPrice((prev) => {
@@ -41,19 +46,8 @@ function MealPopup({
     });
   }
 
-  const [obj, setObj] = useState({
-    title: title,
-    price: 0,
-    amount: amount,
-  });
-
   function handleOrder(finalPrice) {
-    setObj((prev) => {
-      return {
-        ...prev,
-        price: finalPrice,
-      };
-    });
+    setOrderInfo({ title, amount, price: finalPrice });
   }
 
   return (
@@ -80,7 +74,7 @@ function MealPopup({
         <BtnExit setIsMealOpen={setIsMealOpen} />
         <Seperator classClr='grey' />
         <Seperator classClr='white' />
-        <OrderContext.Provider value={obj}>
+        <OrderContext.Provider value={orderInfo}>
           <OrderButton
             onOrder={handleOrder}
             price={price}
