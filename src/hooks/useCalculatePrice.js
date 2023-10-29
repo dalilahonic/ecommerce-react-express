@@ -5,7 +5,9 @@ function useCalculatePrice(price, amount, arr) {
 
   if (arr && arr.length >= 1) {
     priceOfOptions = arr.reduce((acc, curr) => {
-      return curr.isChecked ? (acc += curr.price) : acc;
+      return curr.isChecked && curr.price
+        ? (acc += curr.price)
+        : acc;
     }, 0);
   }
 

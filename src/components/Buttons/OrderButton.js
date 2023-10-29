@@ -1,13 +1,14 @@
 import classes from './OrderButton.module.css';
 import useCalculatePrice from '../../hooks/useCalculatePrice';
-import { useContext } from 'react';
-import OrderContext from '../../context/OrderContext';
+import { useState, useEffect } from 'react';
 
 function OrderButton({
   price,
   amount,
   optionsPrice,
   onOrder,
+  title,
+  imgUrl,
 }) {
   let finalPrice = useCalculatePrice(
     price,
@@ -15,9 +16,24 @@ function OrderButton({
     optionsPrice
   );
 
+  const [orderInfo, setOrderInfo] = useState({
+    title: title,
+    price: 0,
+    amount: amount,
+    imgUrl: imgUrl,
+  });
+
+  useEffect(() => {
+    setOrderInfo({
+      title,
+      amount,
+      price: finalPrice,
+      imgUrl: imgUrl,
+    });
+  }, [amount, finalPrice, title, imgUrl]);
 
   function handleClick() {
-    onOrder(finalPrice);
+    onOrder(orderInfo);
   }
 
   return (

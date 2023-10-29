@@ -2,15 +2,36 @@ import classes from './HeaderRight.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { useEffect } from 'react';
 
-function HeaderRight({ setIsCartWindowOpen }) {
+function HeaderRight({
+  setIsCartWindowOpen,
+  amountCard,
+  cartIsHovered,
+  setCartIsHovered,
+  isCartWindowOpen,
+}) {
   function handleMouseEnter() {
     setIsCartWindowOpen(true);
+    setCartIsHovered(true);
   }
 
-  function handleMouseLeave() {
-    setIsCartWindowOpen(false);
-  }
+  useEffect(() => {
+    let time;
+    if (!cartIsHovered && isCartWindowOpen) {
+      time = setTimeout(() => {
+        setIsCartWindowOpen(false);
+        setCartIsHovered(false);
+      }, 1000);
+    }
+    return () => clearTimeout(time);
+  }, [
+    cartIsHovered,
+    setIsCartWindowOpen,
+    setCartIsHovered,
+    isCartWindowOpen,
+  ]);
+
   return (
     <div className={classes.headerRight}>
       <div className={classes.btnDiv}>
@@ -24,11 +45,12 @@ function HeaderRight({ setIsCartWindowOpen }) {
           icon={faUser}
         />
         <FontAwesomeIcon
+          onMouseLeave={() => setCartIsHovered(false)}
           onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
           className={classes.icon}
           icon={faCartShopping}
         />
+        <p>{amountCard}</p>
       </div>
     </div>
   );

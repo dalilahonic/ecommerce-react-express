@@ -7,7 +7,7 @@ function MenuDisplay({
   heading,
   inputValue,
   transformedHeading,
-  id,
+  id, onOrder
 }) {
   const [filteredData] = useFilter(
     mealsData,
@@ -38,6 +38,7 @@ function MenuDisplay({
                   imgUrl={meal.image}
                   alt={meal.mealName}
                   options={meal.options}
+                  onOrder={onOrder}
                 />
               ))}
             </div>

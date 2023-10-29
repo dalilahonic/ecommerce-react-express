@@ -16,6 +16,14 @@ div.headerRight {
   justify-content: center;
   background-color: white;
 }
+div.btnIcon {
+  display: flex;
+  align-items: center;
+}
+
+div.btnIcon p {
+  font-weight: 900;
+}
 
 .icon {
   font-size: 20px;

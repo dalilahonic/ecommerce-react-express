@@ -9,6 +9,7 @@ import MenuDisplay from './components/Meal Card/Menu Display/MenuDisplay';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
+  const [orderInfo, setOrderInfo] = useState([]);
   const sectionNames = useContext(SectionsContext);
 
   const [mealsData] = useFetch(
@@ -21,9 +22,13 @@ function App() {
     setInputValue(value);
   }
 
+  function handleOrder(orderInfo) {
+    setOrderInfo((prev) => [...prev, { ...orderInfo }]);
+  }
+
   return (
     <>
-      <Header />
+      <Header orderInfo={orderInfo} />
       <ImageComponent />
       <MainSearch onChangeInputValue={onChangeInputValue} />
       {sectionNames.map((el, index) => (
@@ -34,6 +39,7 @@ function App() {
           heading={el}
           transformedHeading={transformedHeading[index]}
           inputValue={inputValue}
+          onOrder={handleOrder}
         />
       ))}
     </>

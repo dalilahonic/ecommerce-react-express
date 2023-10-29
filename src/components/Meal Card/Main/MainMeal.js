@@ -10,6 +10,7 @@ function MainMeal({
   alt,
   id,
   options,
+  onOrder,
 }) {
   const [isMealOpen, setIsMealOpen] = useState(false);
 
@@ -17,6 +18,12 @@ function MainMeal({
     setIsMealOpen(true);
     document.body.classList.add('scrollLock');
   }
+
+  function handleClose() {
+    setIsMealOpen(false);
+    document.body.classList.remove('scrollLock');
+  }
+
   return (
     <>
       <MealItem
@@ -37,6 +44,8 @@ function MainMeal({
           alt={alt}
           setIsMealOpen={setIsMealOpen}
           options={options}
+          onOrder={onOrder}
+          onClose={handleClose}
         />
       )}
     </>

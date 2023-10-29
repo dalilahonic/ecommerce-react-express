@@ -6,7 +6,6 @@ import Seperator from '../../Seperator/Separator';
 import { useState } from 'react';
 import MainOptions from '../../Options/MainOptions';
 import PopupInfo from './PopupInfo';
-import OrderContext from '../../../context/OrderContext';
 
 function MealPopup({
   title,
@@ -16,14 +15,11 @@ function MealPopup({
   alt,
   setIsMealOpen,
   options,
+  onOrder,
+  onClose,
 }) {
   const [amount, setAmount] = useState(1);
   const [optionsPrice, setOptionsPrice] = useState([]);
-  const [orderInfo, setOrderInfo] = useState({
-    title: title,
-    price: 0,
-    amount: amount,
-  });
 
   function handleChecked(isChecked, price, name) {
     setOptionsPrice((prev) => {
@@ -45,9 +41,9 @@ function MealPopup({
       }
     });
   }
-
-  function handleOrder(finalPrice) {
-    setOrderInfo({ title, amount, price: finalPrice });
+  function handleOrder(orderInfo) {
+    onOrder(orderInfo);
+    onClose();
   }
 
   return (
@@ -74,14 +70,14 @@ function MealPopup({
         <BtnExit setIsMealOpen={setIsMealOpen} />
         <Seperator classClr='grey' />
         <Seperator classClr='white' />
-        <OrderContext.Provider value={orderInfo}>
-          <OrderButton
-            onOrder={handleOrder}
-            price={price}
-            amount={amount}
-            optionsPrice={optionsPrice}
-          />
-        </OrderContext.Provider>
+        <OrderButton
+          imgUrl={imgUrl}
+          onOrder={handleOrder}
+          price={price}
+          amount={amount}
+          optionsPrice={optionsPrice}
+          title={title}
+        />
       </div>
     </div>
   );
