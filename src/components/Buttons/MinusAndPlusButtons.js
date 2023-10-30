@@ -1,7 +1,10 @@
 import classes from './MinusAndPlusButtons.module.css';
 
-function MinusAndPlusButtons({amount, setAmount}) {
-
+function MinusAndPlusButtons({
+  amount,
+  setAmount,
+  className = '',
+}) {
   function handlePlusClick() {
     setAmount((prev) => prev + 1);
   }
@@ -13,7 +16,9 @@ function MinusAndPlusButtons({amount, setAmount}) {
   }
 
   return (
-    <div className={classes.minusAndPlus}>
+    <div
+      className={`${classes.minusAndPlus} ${classes[className]}`}
+    >
       <button
         onClick={handleMinusClick}
         className={`${

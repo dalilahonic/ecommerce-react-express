@@ -4,6 +4,12 @@ div.minusAndPlus {
   padding-inline: 20px;
   margin-block: 18px;
 }
+
+div.minusAndPlus.gap {
+  gap: 20px;
+  padding-inline: 60px;
+}
+
 button.minus,
 button.plus {
   width: 40px;

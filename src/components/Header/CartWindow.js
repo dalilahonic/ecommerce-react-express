@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
+import OrderButton from '../Buttons/OrderButton';
 import classes from './CartWindow.module.css';
+import ItemCart from './ItemCart';
 
 function CartWindow({
   orderInfo,
@@ -12,7 +15,17 @@ function CartWindow({
   function handleMouseLeave() {
     setCartIsHovered(false);
   }
-  console.log(orderInfo);
+
+  const [finalPrice, setFinalPrice] = useState(0);
+  console.log(finalPrice);
+
+  useEffect(() => {
+    const newPrice = orderInfo.reduce(
+      (acc, curr) => acc + curr.price,
+      0
+    );
+    setFinalPrice(newPrice);
+  }, [orderInfo]);
 
   return (
     <div
@@ -22,18 +35,29 @@ function CartWindow({
     >
       <h3>Your Cart ({amountCard})</h3>
       {orderInfo.length > 0 ? (
-        orderInfo.map((el) => {
+        orderInfo.map((el, i) => {
           return (
-            <div className={classes.cartItem}>
-              <img src={el.imgUrl} alt=''></img>
-              <h5>{el.title}</h5>
-              <p>${el.price}</p>
-            </div>
+            <ItemCart
+              key={i}
+              title={el.title}
+              imgUrl={el.imgUrl}
+              price={el.price}
+              amount={el.amount}
+            />
           );
         })
       ) : (
         <h4>Your Cart Is Empty</h4>
       )}
+      <div className={classes.orderBtnDiv}>
+        {orderInfo.length > 0 && (
+          <OrderButton
+            className='cart'
+            text='Continue to Cart'
+            priceText={finalPrice}
+          />
+        )}
+      </div>
     </div>
   );
 }

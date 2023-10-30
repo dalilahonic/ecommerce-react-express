@@ -6,6 +6,7 @@ import Seperator from '../../Seperator/Separator';
 import { useState } from 'react';
 import MainOptions from '../../Options/MainOptions';
 import PopupInfo from './PopupInfo';
+import useCalculatePrice from '../../../hooks/useCalculatePrice';
 
 function MealPopup({
   title,
@@ -18,8 +19,8 @@ function MealPopup({
   onOrder,
   onClose,
 }) {
-  const [amount, setAmount] = useState(1);
   const [optionsPrice, setOptionsPrice] = useState([]);
+  const [amount, setAmount] = useState(1);
 
   function handleChecked(isChecked, price, name) {
     setOptionsPrice((prev) => {
@@ -45,6 +46,12 @@ function MealPopup({
     onOrder(orderInfo);
     onClose();
   }
+
+  let finalPrice = useCalculatePrice(
+    price,
+    amount,
+    optionsPrice
+  );
 
   return (
     <div className={classes.mealOverlay}>
@@ -77,6 +84,8 @@ function MealPopup({
           amount={amount}
           optionsPrice={optionsPrice}
           title={title}
+          text='Add to Order'
+          priceText={finalPrice}
         />
       </div>
     </div>

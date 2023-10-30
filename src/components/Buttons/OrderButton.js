@@ -9,19 +9,24 @@ function OrderButton({
   onOrder,
   title,
   imgUrl,
+  className = '',
+  text,
+  priceText,
 }) {
-  let finalPrice = useCalculatePrice(
-    price,
-    amount,
-    optionsPrice
-  );
-
   const [orderInfo, setOrderInfo] = useState({
     title: title,
     price: 0,
     amount: amount,
     imgUrl: imgUrl,
   });
+
+  let finalPrice = useCalculatePrice(
+    price,
+    amount,
+    optionsPrice
+  );
+
+  console.log(priceText);
 
   useEffect(() => {
     setOrderInfo({
@@ -39,10 +44,10 @@ function OrderButton({
   return (
     <button
       onClick={() => handleClick()}
-      className={classes.btnAddToOrder}
+      className={`${classes.btnAddToOrder} ${classes[className]}`}
     >
-      <span>Add to Order</span>
-      <span>${finalPrice.toFixed(2)}</span>
+      <span>{text}</span>
+      <span>${priceText.toFixed(2)} </span>
     </button>
   );
 }

@@ -31,6 +31,15 @@ button.btnAddToOrder {
   animation-fill-mode: forwards;
 }
 
+button.btnAddToOrder.cart {
+  position: absolute;
+  width: 98%;
+  height: 38px;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+}
+
 button.btnAddToOrder span:nth-of-type(1) {
   color: white;
 }
