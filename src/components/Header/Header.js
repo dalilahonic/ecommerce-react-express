@@ -4,8 +4,11 @@ import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
 import CartWindow from './CartWindow';
 import { useEffect } from 'react';
+import Cart from '../Cart/Cart';
 
-function Header({ orderInfo }) {
+function Header({ orderInfo, setOrderInfo }) {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   const [isCartWindowOpen, setIsCartWindowOpen] =
     useState(false);
   const [amountCard, setAmountCard] = useState(0);
@@ -21,25 +24,38 @@ function Header({ orderInfo }) {
       );
   }, [orderInfo]);
 
+  function handleOpenCart() {
+    setIsCartOpen(true);
+  }
+
   return (
     <>
-      <div className={classes.mainHeader}>
-        <HeaderLeft />
-        <HeaderRight
-          isCartWindowOpen={isCartWindowOpen}
-          cartIsHovered={cartIsHovered}
-          amountCard={amountCard}
-          setIsCartWindowOpen={setIsCartWindowOpen}
-          setCartIsHovered={setCartIsHovered}
-        />
-        {isCartWindowOpen && (
-          <CartWindow
-            setCartIsHovered={setCartIsHovered}
+      {!isCartOpen && (
+        <div className={classes.mainHeader}>
+          <HeaderLeft />
+          <HeaderRight
             orderInfo={orderInfo}
+            isCartWindowOpen={isCartWindowOpen}
+            cartIsHovered={cartIsHovered}
             amountCard={amountCard}
+            setIsCartWindowOpen={setIsCartWindowOpen}
+            setCartIsHovered={setCartIsHovered}
+            setIsCartOpen={setIsCartOpen}
+            isCartOpen={isCartOpen}
+            onOpenCart={handleOpenCart}
           />
-        )}
-      </div>
+          {isCartWindowOpen && (
+            <CartWindow
+              setCartIsHovered={setCartIsHovered}
+              orderInfo={orderInfo}
+              amountCard={amountCard}
+              setIsCartOpen={setIsCartOpen}
+              setOrderInfo={setOrderInfo}
+            />
+          )}
+        </div>
+      )}
+      {isCartOpen && <Cart orderInfo={orderInfo} />}
     </>
   );
 }

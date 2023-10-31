@@ -28,9 +28,15 @@ function App() {
 
   return (
     <>
-      <Header orderInfo={orderInfo} />
+      <Header
+        orderInfo={orderInfo}
+        setOrderInfo={setOrderInfo}
+      />
       <ImageComponent />
-      <MainSearch onChangeInputValue={onChangeInputValue} />
+      <MainSearch
+        onChangeInputValue={onChangeInputValue}
+        setInputValue={setInputValue}
+      />
       {sectionNames.map((el, index) => (
         <MenuDisplay
           id={`meal${index}`}

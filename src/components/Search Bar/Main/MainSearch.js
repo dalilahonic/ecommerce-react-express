@@ -3,11 +3,12 @@ import { useState } from 'react';
 import SearchIcon from '../Search Icon/SearchIcon';
 import SearchBar from '../Search/SearchBar';
 
-function MainSearch({ onChangeInputValue }) {
+function MainSearch({ onChangeInputValue, setInputValue }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   function handleExit() {
     setIsSearchOpen(false);
+    setInputValue('');
   }
 
   return (

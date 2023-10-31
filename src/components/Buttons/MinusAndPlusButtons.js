@@ -4,15 +4,20 @@ function MinusAndPlusButtons({
   amount,
   setAmount,
   className = '',
+  onAddAmount,
 }) {
   function handlePlusClick() {
-    setAmount((prev) => prev + 1);
+    if (setAmount) setAmount((prev) => prev + 1);
+    if (onAddAmount) onAddAmount('+');
   }
 
   function handleMinusClick() {
-    if (amount > 1) {
-      setAmount((prev) => prev - 1);
+    if (setAmount) {
+      if (amount > 1) {
+        setAmount((prev) => prev - 1);
+      }
     }
+    if (onAddAmount) onAddAmount('-');
   }
 
   return (
@@ -41,12 +46,3 @@ function MinusAndPlusButtons({
 }
 
 export default MinusAndPlusButtons;
-
-// const disabledButton =
-//   amount === 1
-//     ? {
-//         cursor: 'not-allowed',
-//         backgroundColor: '#F8F8F8',
-//         color: '#8D8D8D',
-//       }
-//     : {};

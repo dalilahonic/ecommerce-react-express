@@ -7,7 +7,11 @@ function CartWindow({
   orderInfo,
   amountCard,
   setCartIsHovered,
+  setIsCartOpen,
+  setOrderInfo,
 }) {
+  const [totalPrice, setTotalPrice] = useState(0);
+
   function handleMouseEnter() {
     setCartIsHovered(true);
   }
@@ -16,16 +20,30 @@ function CartWindow({
     setCartIsHovered(false);
   }
 
-  const [finalPrice, setFinalPrice] = useState(0);
-  console.log(finalPrice);
+  function handleOpenCart() {
+    setIsCartOpen(true);
+  }
 
   useEffect(() => {
-    const newPrice = orderInfo.reduce(
-      (acc, curr) => acc + curr.price,
-      0
-    );
-    setFinalPrice(newPrice);
+    let price = 0;
+    orderInfo.forEach((el) => {
+      price += el.price * el.amount;
+    });
+    console.log(price);
+    setTotalPrice(price);
   }, [orderInfo]);
+
+  function handleAddAmount(title, sign) {
+    const targetIndex = orderInfo.findIndex(
+      (el) => el.title === title
+    );
+    setOrderInfo((prev) => {
+      let obj = [...prev];
+      if (sign === '+') obj[targetIndex].amount++;
+      else if (sign === '-') obj[targetIndex].amount--;
+      return obj;
+    });
+  }
 
   return (
     <div
@@ -43,6 +61,9 @@ function CartWindow({
               imgUrl={el.imgUrl}
               price={el.price}
               amount={el.amount}
+              onAddAmount={(sign) =>
+                handleAddAmount(el.title, sign)
+              }
             />
           );
         })
@@ -54,7 +75,8 @@ function CartWindow({
           <OrderButton
             className='cart'
             text='Continue to Cart'
-            priceText={finalPrice}
+            priceText={totalPrice}
+            onOpenCart={handleOpenCart}
           />
         )}
       </div>

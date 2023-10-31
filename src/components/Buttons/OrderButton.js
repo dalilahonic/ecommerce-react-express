@@ -12,7 +12,9 @@ function OrderButton({
   className = '',
   text,
   priceText,
+  onOpenCart,
 }) {
+  
   const [orderInfo, setOrderInfo] = useState({
     title: title,
     price: 0,
@@ -26,8 +28,6 @@ function OrderButton({
     optionsPrice
   );
 
-  console.log(priceText);
-
   useEffect(() => {
     setOrderInfo({
       title,
@@ -38,7 +38,8 @@ function OrderButton({
   }, [amount, finalPrice, title, imgUrl]);
 
   function handleClick() {
-    onOrder(orderInfo);
+    if (onOrder) onOrder(orderInfo);
+    if (onOpenCart) onOpenCart();
   }
 
   return (

@@ -10,6 +10,7 @@ function HeaderRight({
   cartIsHovered,
   setCartIsHovered,
   isCartWindowOpen,
+  onOpenCart,
 }) {
   function handleMouseEnter() {
     setIsCartWindowOpen(true);
@@ -33,26 +34,29 @@ function HeaderRight({
   ]);
 
   return (
-    <div className={classes.headerRight}>
-      <div className={classes.btnDiv}>
-        <button className={classes.orderBtnHeader}>
-          Order Now
-        </button>
+    <>
+      <div className={classes.headerRight}>
+        <div className={classes.btnDiv}>
+          <button className={classes.orderBtnHeader}>
+            Order Now
+          </button>
+        </div>
+        <div className={classes.btnIcon}>
+          <FontAwesomeIcon
+            className={classes.icon}
+            icon={faUser}
+          />
+          <FontAwesomeIcon
+            onClick={onOpenCart}
+            onMouseLeave={() => setCartIsHovered(false)}
+            onMouseEnter={handleMouseEnter}
+            className={classes.icon}
+            icon={faCartShopping}
+          />
+          <p>{amountCard}</p>
+        </div>
       </div>
-      <div className={classes.btnIcon}>
-        <FontAwesomeIcon
-          className={classes.icon}
-          icon={faUser}
-        />
-        <FontAwesomeIcon
-          onMouseLeave={() => setCartIsHovered(false)}
-          onMouseEnter={handleMouseEnter}
-          className={classes.icon}
-          icon={faCartShopping}
-        />
-        <p>{amountCard}</p>
-      </div>
-    </div>
+    </>
   );
 }
 
