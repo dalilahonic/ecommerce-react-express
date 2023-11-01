@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import OrderButton from '../Buttons/OrderButton';
+import OrderButton from '../../../Buttons/OrderButton';
 import classes from './CartWindow.module.css';
 import ItemCart from './ItemCart';
 
@@ -29,7 +29,6 @@ function CartWindow({
     orderInfo.forEach((el) => {
       price += el.price * el.amount;
     });
-    console.log(price);
     setTotalPrice(price);
   }, [orderInfo]);
 

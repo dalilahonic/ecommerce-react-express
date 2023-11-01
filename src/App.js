@@ -1,26 +1,10 @@
-import { useContext, useState } from 'react';
-import Header from './components/Header/Header';
-import ImageComponent from './components/Image Component/ImageComponent';
-import SectionsContext from './context/SectionsContext';
-import useFetch from './hooks/useFetch';
-import useTransformText from './hooks/useTransformText';
-import MainSearch from './components/Search Bar/Main/MainSearch';
-import MenuDisplay from './components/Meal Card/Menu Display/MenuDisplay';
+import { useState } from 'react';
+import Cart from './components/Cart/Cart';
+import MainPage from './components/pages/MainPage';
 
 function App() {
-  const [inputValue, setInputValue] = useState('');
   const [orderInfo, setOrderInfo] = useState([]);
-  const sectionNames = useContext(SectionsContext);
-
-  const [mealsData] = useFetch(
-    'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
-  );
-
-  const transformedHeading = useTransformText(sectionNames);
-
-  function onChangeInputValue(value) {
-    setInputValue(value);
-  }
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   function handleOrder(orderInfo) {
     setOrderInfo((prev) => [...prev, { ...orderInfo }]);
@@ -28,26 +12,16 @@ function App() {
 
   return (
     <>
-      <Header
-        orderInfo={orderInfo}
-        setOrderInfo={setOrderInfo}
-      />
-      <ImageComponent />
-      <MainSearch
-        onChangeInputValue={onChangeInputValue}
-        setInputValue={setInputValue}
-      />
-      {sectionNames.map((el, index) => (
-        <MenuDisplay
-          id={`meal${index}`}
-          key={index}
-          mealsData={mealsData}
-          heading={el}
-          transformedHeading={transformedHeading[index]}
-          inputValue={inputValue}
+      {!isCartOpen ? (
+        <MainPage
+          orderInfo={orderInfo}
+          setOrderInfo={setOrderInfo}
+          setIsCartOpen={setIsCartOpen}
           onOrder={handleOrder}
         />
-      ))}
+      ) : (
+        <Cart orderInfo={orderInfo} />
+      )}
     </>
   );
 }

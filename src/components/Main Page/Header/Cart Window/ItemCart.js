@@ -1,5 +1,5 @@
 import classes from './ItemCart.module.css';
-import MinusAndPlusButtons from '../Buttons/MinusAndPlusButtons';
+import MinusAndPlusButtons from '../../../Buttons/MinusAndPlusButtons';
 
 function ItemCart({
   imgUrl,

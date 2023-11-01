@@ -1,5 +1,5 @@
-function useCalculatePrice(price, amount, arr) {
-  let finalPrice = price * amount;
+function useCalculatePrice(price, arr) {
+  let finalPrice = price;
 
   let priceOfOptions = 0;
 
@@ -11,7 +11,7 @@ function useCalculatePrice(price, amount, arr) {
     }, 0);
   }
 
-  return (finalPrice += priceOfOptions * amount);
+  return (finalPrice += priceOfOptions);
 }
 
 export default useCalculatePrice;

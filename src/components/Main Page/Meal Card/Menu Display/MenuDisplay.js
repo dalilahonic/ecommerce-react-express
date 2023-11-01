@@ -1,5 +1,5 @@
 import classes from './MenuDisplay.module.css';
-import useFilter from '../../../hooks/useFilter';
+import useFilter from '../../../../hooks/useFilter';
 import MainMeal from '../Main/MainMeal';
 
 function MenuDisplay({
@@ -7,7 +7,8 @@ function MenuDisplay({
   heading,
   inputValue,
   transformedHeading,
-  id, onOrder
+  id,
+  onOrder,
 }) {
   const [filteredData] = useFilter(
     mealsData,

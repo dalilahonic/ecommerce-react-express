@@ -14,7 +14,6 @@ function OrderButton({
   priceText,
   onOpenCart,
 }) {
-  
   const [orderInfo, setOrderInfo] = useState({
     title: title,
     price: 0,
@@ -22,11 +21,7 @@ function OrderButton({
     imgUrl: imgUrl,
   });
 
-  let finalPrice = useCalculatePrice(
-    price,
-    amount,
-    optionsPrice
-  );
+  let finalPrice = useCalculatePrice(price, optionsPrice);
 
   useEffect(() => {
     setOrderInfo({
@@ -48,7 +43,11 @@ function OrderButton({
       className={`${classes.btnAddToOrder} ${classes[className]}`}
     >
       <span>{text}</span>
-      <span>${priceText.toFixed(2)} </span>
+      {priceText ? (
+        <span>${priceText.toFixed(2)}</span>
+      ) : (
+        <span>${priceText.toFixed(2)}</span>
+      )}
     </button>
   );
 }

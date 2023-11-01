@@ -10,7 +10,7 @@ function HeaderRight({
   cartIsHovered,
   setCartIsHovered,
   isCartWindowOpen,
-  onOpenCart,
+  setIsCartOpen,
 }) {
   function handleMouseEnter() {
     setIsCartWindowOpen(true);
@@ -47,7 +47,7 @@ function HeaderRight({
             icon={faUser}
           />
           <FontAwesomeIcon
-            onClick={onOpenCart}
+            onClick={() => setIsCartOpen(true)}
             onMouseLeave={() => setCartIsHovered(false)}
             onMouseEnter={handleMouseEnter}
             className={classes.icon}

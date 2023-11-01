@@ -1,5 +1,4 @@
-
-import classes from './HeaderLeft.module.css'
+import classes from './HeaderLeft.module.css';
 function HeaderLeft() {
   return (
     <nav className={classes.header}>

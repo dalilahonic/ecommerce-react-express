@@ -1,12 +1,12 @@
 import classes from './MealPopup.module.css';
-import MinusAndPlusButtons from '../../Buttons/MinusAndPlusButtons';
-import OrderButton from '../../Buttons/OrderButton';
-import BtnExit from '../../Buttons/BtnExit';
+import MinusAndPlusButtons from '../../../Buttons/MinusAndPlusButtons';
+import OrderButton from '../../../Buttons/OrderButton';
+import BtnExit from '../../../Buttons/BtnExit';
 import Seperator from '../../Seperator/Separator';
 import { useState } from 'react';
 import MainOptions from '../../Options/MainOptions';
 import PopupInfo from './PopupInfo';
-import useCalculatePrice from '../../../hooks/useCalculatePrice';
+import useCalculatePrice from '../../../../hooks/useCalculatePrice';
 
 function MealPopup({
   title,
@@ -47,11 +47,7 @@ function MealPopup({
     onClose();
   }
 
-  let finalPrice = useCalculatePrice(
-    price,
-    amount,
-    optionsPrice
-  );
+  let finalPrice = useCalculatePrice(price, optionsPrice);
 
   return (
     <div className={classes.mealOverlay}>
@@ -85,7 +81,7 @@ function MealPopup({
           optionsPrice={optionsPrice}
           title={title}
           text='Add to Order'
-          priceText={finalPrice}
+          priceText={finalPrice * amount}
         />
       </div>
     </div>

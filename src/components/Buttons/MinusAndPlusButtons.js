@@ -12,12 +12,12 @@ function MinusAndPlusButtons({
   }
 
   function handleMinusClick() {
-    if (setAmount) {
-      if (amount > 1) {
+    if (amount > 1) {
+      if (setAmount) {
         setAmount((prev) => prev - 1);
       }
+      if (onAddAmount) onAddAmount('-');
     }
-    if (onAddAmount) onAddAmount('-');
   }
 
   return (

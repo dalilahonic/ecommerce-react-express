@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import SectionsContext from '../../../context/SectionsContext';
+import SectionsContext from '../../../../context/SectionsContext';
 import classes from './NavBar.module.css';
-import useTransformText from '../../../hooks/useTransformText';
+import useTransformText from '../../../../hooks/useTransformText';
 
 function NavBar({ handleClickScroll, setIsDropdownOpen }) {
   const sections = useContext(SectionsContext);

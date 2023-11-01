@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import classes from './Dropdown.module.css';
-import SectionsContext from '../../../context/SectionsContext';
-import useTransformText from '../../../hooks/useTransformText';
+import SectionsContext from '../../../../context/SectionsContext';
+import useTransformText from '../../../../hooks/useTransformText';
 
 function Dropdown({
   setIsDropdownOpen,

@@ -1,4 +1,4 @@
-import MealItem from '../Card/MealItem';
+import MealItem from '../Meal Item/MealItem';
 import MealPopup from '../Popup/MealPopup';
 import { useState } from 'react';
 
