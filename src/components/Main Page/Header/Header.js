@@ -9,10 +9,11 @@ function Header({
   orderInfo,
   setOrderInfo,
   setIsCartOpen,
+  amountCard,
+  setAmountCard,
 }) {
   const [isCartWindowOpen, setIsCartWindowOpen] =
     useState(false);
-  const [amountCard, setAmountCard] = useState(0);
   const [cartIsHovered, setCartIsHovered] = useState(true);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function Header({
           0
         )
       );
-  }, [orderInfo]);
+  }, [orderInfo, setAmountCard]);
 
   return (
     <>

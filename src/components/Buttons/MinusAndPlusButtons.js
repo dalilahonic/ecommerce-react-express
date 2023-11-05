@@ -5,10 +5,12 @@ function MinusAndPlusButtons({
   setAmount,
   className = '',
   onAddAmount,
+  onAdd,
 }) {
   function handlePlusClick() {
     if (setAmount) setAmount((prev) => prev + 1);
     if (onAddAmount) onAddAmount('+');
+    if (onAdd) onAdd('+');
   }
 
   function handleMinusClick() {
@@ -17,6 +19,7 @@ function MinusAndPlusButtons({
         setAmount((prev) => prev - 1);
       }
       if (onAddAmount) onAddAmount('-');
+      if (onAdd) onAdd('-');
     }
   }
 

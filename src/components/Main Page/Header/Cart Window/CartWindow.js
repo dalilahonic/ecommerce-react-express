@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import OrderButton from '../../../Buttons/OrderButton';
 import classes from './CartWindow.module.css';
-import ItemCart from './ItemCart';
+import WindowItem from './WindowItem';
 
 function CartWindow({
   orderInfo,
@@ -33,13 +33,21 @@ function CartWindow({
   }, [orderInfo]);
 
   function handleAddAmount(title, sign) {
-    const targetIndex = orderInfo.findIndex(
-      (el) => el.title === title
-    );
     setOrderInfo((prev) => {
+      const targetIndex = prev.findIndex(
+        (el) => el.title === title
+      );
       let obj = [...prev];
-      if (sign === '+') obj[targetIndex].amount++;
-      else if (sign === '-') obj[targetIndex].amount--;
+
+      if (targetIndex !== -1) {
+        if (sign === '+') obj[targetIndex].amount++;
+        else if (
+          sign === '-' &&
+          obj[targetIndex].amount > 0
+        )
+          obj[targetIndex].amount--;
+      }
+
       return obj;
     });
   }
@@ -54,7 +62,7 @@ function CartWindow({
       {orderInfo.length > 0 ? (
         orderInfo.map((el, i) => {
           return (
-            <ItemCart
+            <WindowItem
               key={i}
               title={el.title}
               imgUrl={el.imgUrl}

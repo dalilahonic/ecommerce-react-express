@@ -1,23 +1,38 @@
 import classes from './Cart.module.css';
+import ItemCart from './ItemCart';
 
-function Cart({ orderInfo }) {
+function Cart({
+  orderInfo,
+  setOrderInfo,
+  amountCard,
+  setAmountCard,
+}) {
+  function handlePlus(sign) {
+    if (sign === '+') setAmountCard((prev) => prev + 1);
+    if (sign === '-') setAmountCard((prev) => prev - 1);
+  }
+
   return (
     <div className={classes.cart}>
       <div className={classes.cartChild}>
         <div className={classes.yourCartMain}>
           <div>
             <h1>Your Cart</h1>
-            <p>Your Order(x items)</p>
+            <p>Your Order({amountCard})</p>
           </div>
-          <div className={classes.item}>
+          <div className={classes.items}>
             {orderInfo.length > 0 ? (
-              orderInfo.map((el) => {
+              orderInfo.map((el, index) => {
                 return (
-                  <>
-                    <p>{el.title}</p>
-                    <p>{el.price}</p>
-                    <p>{el.amount}</p>
-                  </>
+                  <ItemCart
+                    key={index}
+                    title={el.title}
+                    amount={el.amount}
+                    imgUrl={el.imgUrl}
+                    price={el.price}
+                    setOrderInfo={setOrderInfo}
+                    onAdd={(sign) => handlePlus(sign)}
+                  />
                 );
               })
             ) : (

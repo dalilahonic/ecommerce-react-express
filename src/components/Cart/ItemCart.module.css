@@ -1,0 +1,55 @@
+div.item {
+  display: flex;
+}
+
+div.items .item {
+  display: flex;
+}
+
+div.item {
+  padding-block: 36px;
+  position: relative;
+}
+
+div.item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2.5px;
+  background-color: #d3d3d3;
+  bottom: 0;
+}
+
+div.item p {
+  font-size: 17px !important;
+  color: #000000;
+  font-weight: 400;
+}
+
+div.item .info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+div.info div {
+  height: 50%;
+}
+
+div.info div:first-of-type {
+  position: relative;
+}
+
+div.info p {
+  top: 6%;
+}
+
+div.info p:nth-child(1) {
+  position: absolute;
+  left: 2%;
+}
+
+div.item p:nth-of-type(2) {
+  position: absolute;
+  right: 2%;
+}

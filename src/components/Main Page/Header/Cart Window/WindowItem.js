@@ -1,7 +1,7 @@
-import classes from './ItemCart.module.css';
+import classes from './WindowItem.module.css';
 import MinusAndPlusButtons from '../../../Buttons/MinusAndPlusButtons';
 
-function ItemCart({
+function WindowItem({
   imgUrl,
   title,
   price,
@@ -22,7 +22,7 @@ function ItemCart({
       <div>
         <MinusAndPlusButtons
           amount={amount}
-          className='gap'
+          className='padding'
           onAddAmount={(sign) => onAddAmount(sign)}
         />
       </div>
@@ -30,4 +30,4 @@ function ItemCart({
   );
 }
 
-export default ItemCart;
+export default WindowItem;

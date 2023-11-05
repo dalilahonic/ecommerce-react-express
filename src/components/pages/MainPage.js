@@ -12,10 +12,12 @@ function MainPage({
   setOrderInfo,
   setIsCartOpen,
   onOrder,
+  amountCard,
+  setAmountCard,
 }) {
   const sectionNames = useContext(SectionsContext);
   const [inputValue, setInputValue] = useState('');
-  
+
   const transformedHeading = useTransformText(sectionNames);
 
   const [mealsData] = useFetch(
@@ -32,6 +34,8 @@ function MainPage({
         orderInfo={orderInfo}
         setOrderInfo={setOrderInfo}
         setIsCartOpen={setIsCartOpen}
+        amountCard={amountCard}
+        setAmountCard={setAmountCard}
       />
       <ImageComponent />
       <MainSearch
