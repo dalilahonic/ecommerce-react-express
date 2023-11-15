@@ -6,6 +6,9 @@
   height: 34px;
   font-weight: 700;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 div.headerRight {

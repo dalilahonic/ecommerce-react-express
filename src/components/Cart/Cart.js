@@ -1,3 +1,4 @@
+import ContinueShopping from '../Buttons/ContiniueShopping';
 import classes from './Cart.module.css';
 import ItemCart from './ItemCart';
 
@@ -6,6 +7,7 @@ function Cart({
   setOrderInfo,
   amountCard,
   setAmountCard,
+  setIsCartOpen,
 }) {
   function handlePlus(sign) {
     if (sign === '+') setAmountCard((prev) => prev + 1);
@@ -15,6 +17,7 @@ function Cart({
   return (
     <div className={classes.cart}>
       <div className={classes.cartChild}>
+        <ContinueShopping setIsCartOpen={setIsCartOpen} />
         <div className={classes.yourCartMain}>
           <div>
             <h1>Your Cart</h1>
