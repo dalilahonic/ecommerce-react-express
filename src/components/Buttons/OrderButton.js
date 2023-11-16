@@ -44,9 +44,9 @@ function OrderButton({
     >
       <span>{text}</span>
       {priceText ? (
-        <span>${priceText.toFixed(2)}</span>
+        <span>${priceText?.toFixed(2)}</span>
       ) : (
-        <span>${priceText.toFixed(2)}</span>
+        <span>${priceText?.toFixed(2)}</span>
       )}
     </button>
   );

@@ -1,7 +1,7 @@
 div.cartItem {
   display: flex;
   width: 100%;
-  margin-block:40px 10px;
+  margin-block: 40px 10px;
   position: relative;
 }
 
@@ -30,11 +30,11 @@ div.cartContainer {
   position: relative;
 }
 
-div.cartContainer::after {
-  position: absolute;
+div.cartContainer:not(:first-of-type)::before {
   content: '';
+  position: absolute;
   width: 100%;
   height: 1px;
   background-color: #d3d3d3;
-  top: 110%;
+  bottom: 120%;
 }

@@ -1,6 +1,7 @@
 import ContinueShopping from '../Buttons/ContiniueShopping';
 import classes from './Cart.module.css';
-import ItemCart from './ItemCart';
+import HeaderCart from './HeaderCart';
+import Items from './Items';
 
 function Cart({
   orderInfo,
@@ -9,39 +10,18 @@ function Cart({
   setAmountCard,
   setIsCartOpen,
 }) {
-  function handlePlus(sign) {
-    if (sign === '+') setAmountCard((prev) => prev + 1);
-    if (sign === '-') setAmountCard((prev) => prev - 1);
-  }
-
   return (
     <div className={classes.cart}>
       <div className={classes.cartChild}>
         <ContinueShopping setIsCartOpen={setIsCartOpen} />
         <div className={classes.yourCartMain}>
-          <div>
-            <h1>Your Cart</h1>
-            <p>Your Order({amountCard})</p>
-          </div>
-          <div className={classes.items}>
-            {orderInfo.length > 0 ? (
-              orderInfo.map((el, index) => {
-                return (
-                  <ItemCart
-                    key={index}
-                    title={el.title}
-                    amount={el.amount}
-                    imgUrl={el.imgUrl}
-                    price={el.price}
-                    setOrderInfo={setOrderInfo}
-                    onAdd={(sign) => handlePlus(sign)}
-                  />
-                );
-              })
-            ) : (
-              <p>Your cart is empty</p>
-            )}
-          </div>
+          <HeaderCart amountCard={amountCard} />
+          <Items
+            orderInfo={orderInfo}
+            setOrderInfo={setOrderInfo}
+            setIsCartOpen={setIsCartOpen}
+            setAmountCard={setAmountCard}
+          />
         </div>
       </div>
     </div>
