@@ -1,0 +1,25 @@
+.tipDiv {
+  width: 77px;
+  height: 56px;
+  background-color: #d3d3d3;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tipDiv:hover {
+  cursor: pointer;
+}
+
+.tipDiv p:last-of-type {
+  color: #4d4d4d;
+}
+
+.black {
+  background-color: #212121 !important;
+}
+div.black.tipDiv p {
+  color: white;
+}

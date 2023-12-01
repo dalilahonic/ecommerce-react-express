@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import ContinueShopping from '../Buttons/ContiniueShopping';
 import classes from './Cart.module.css';
 import HeaderCart from './HeaderCart';
 import Items from './Items';
+import TipCard from './TipCard';
 
-const tips = [10, 15, 20, 'other'];
+const tips = ['10%', '15%', '20%', 'other'];
 
 function Cart({
   orderInfo,
@@ -12,6 +14,12 @@ function Cart({
   setAmountCard,
   setIsCartOpen,
 }) {
+  const [selected, setSelected] = useState('15%');
+
+  function handleSelect(content) {
+    setSelected(content);
+  }
+
   return (
     <div className={classes.cart}>
       <div className={classes.cartChild}>
@@ -44,11 +52,21 @@ function Cart({
             <h5>ADD A TIP</h5>
             <div className={classes.tips}>
               {tips.map((el, i) => {
-                return (
-                  <div key={i}>
-                    {el}
-                    {typeof el === 'number' ? '%' : ''}
-                  </div>
+                return selected === el ? (
+                  <TipCard
+                    isSelected
+                    key={i}
+                    content={el}
+                    onSelect={handleSelect}
+                    orderInfo={orderInfo}
+                  />
+                ) : (
+                  <TipCard
+                    key={i}
+                    content={el}
+                    onSelect={handleSelect}
+                    orderInfo={orderInfo}
+                  />
                 );
               })}
             </div>

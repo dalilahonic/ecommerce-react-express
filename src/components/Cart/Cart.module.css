@@ -71,17 +71,3 @@ div.tips {
   margin-bottom: 30px;
   gap: 10px;
 }
-
-div.tips div {
-  width: 77px;
-  height: 56px;
-  background-color: #d3d3d3;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-div.tips:hover {
-  cursor: pointer;
-}
