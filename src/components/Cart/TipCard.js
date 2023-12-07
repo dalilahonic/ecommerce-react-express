@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import classes from './TipCard.module.css';
 
 function TipCard({
@@ -5,26 +6,24 @@ function TipCard({
   onSelect,
   isSelected,
   orderInfo,
+  onChangeTip,
+  price,
 }) {
-  let price = orderInfo?.reduce(
-    (acc, obj) => (acc += obj?.amount * obj?.price),
-    0
-  );
-  let percent = (Number(content.slice(0, 2)) / 100) * price;
+  const [tip, setTip] = useState((15 / 100) * price);
+
+  useEffect(() => {
+    setTip((Number(content.slice(0, 2)) / 100) * price);
+  }, [orderInfo, price, content, onChangeTip, tip]);
 
   return (
     <div
       className={`${classes.tipDiv} ${
         isSelected ? classes.black : ''
       }`}
-      onClick={(e) =>
-        onSelect(
-          e.target.parentElement.innerText.split('\n')[0]
-        )
-      }
+      onClick={(e) => onSelect(content, tip.toFixed(2))}
     >
       <p>{content}</p>
-      {content !== 'other' && <p>${percent.toFixed(2)}</p>}
+      {content !== 'other' && <p>${tip?.toFixed(2)}</p>}
     </div>
   );
 }

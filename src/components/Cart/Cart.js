@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ContinueShopping from '../Buttons/ContiniueShopping';
 import classes from './Cart.module.css';
 import HeaderCart from './HeaderCart';
 import Items from './Items';
 import TipCard from './TipCard';
+import Price from './Price';
 
 const tips = ['10%', '15%', '20%', 'other'];
 
@@ -15,9 +16,26 @@ function Cart({
   setIsCartOpen,
 }) {
   const [selected, setSelected] = useState('15%');
+  const [price, setPrice] = useState(undefined);
+  const [tip, setTip] = useState((15 / 100) * price);
 
-  function handleSelect(content) {
+  useEffect(() => {
+    setPrice(
+      orderInfo?.reduce(
+        (acc, obj) => (acc += obj?.amount * obj?.price),
+        0
+      )
+    );
+  }, [orderInfo]);
+
+  useEffect(() => {
+    if (selected === '15%')
+      setTip(((15 / 100) * price).toFixed(2));
+  }, [price, selected]);
+
+  function handleSelect(content, tip) {
     setSelected(content);
+    setTip(tip);
   }
 
   return (
@@ -55,22 +73,21 @@ function Cart({
                 return selected === el ? (
                   <TipCard
                     isSelected
-                    key={i}
                     content={el}
                     onSelect={handleSelect}
-                    orderInfo={orderInfo}
+                    price={price}
                   />
                 ) : (
                   <TipCard
-                    key={i}
                     content={el}
                     onSelect={handleSelect}
-                    orderInfo={orderInfo}
+                    price={price}
                   />
                 );
               })}
             </div>
           </div>
+          <Price price={price} tip={tip} />
         </div>
       </div>
     </div>

@@ -1,0 +1,22 @@
+div.priceDiv {
+  width: 100%;
+}
+
+div.priceDiv p {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-block: 12px;
+}
+
+div.priceDiv p span {
+  position: absolute;
+}
+
+div.priceDiv p span:first-of-type {
+  left: 0;
+}
+
+div.priceDiv p span:last-of-type {
+  right: 0;
+}
