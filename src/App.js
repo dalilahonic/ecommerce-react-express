@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Cart from './components/Cart/Cart';
-import MainPage from './components/pages/MainPage';
+import MainPage from './pages/MainPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   const [orderInfo, setOrderInfo] = useState([]);
@@ -27,15 +27,15 @@ function App() {
     <>
       {!isCartOpen ? (
         <MainPage
-          amountCard={amountCard}
-          setAmountCard={setAmountCard}
           orderInfo={orderInfo}
           setOrderInfo={setOrderInfo}
+          amountCard={amountCard}
+          setAmountCard={setAmountCard}
           setIsCartOpen={setIsCartOpen}
           onOrder={handleOrder}
         />
       ) : (
-        <Cart
+        <CartPage
           orderInfo={orderInfo}
           setOrderInfo={setOrderInfo}
           amountCard={amountCard}

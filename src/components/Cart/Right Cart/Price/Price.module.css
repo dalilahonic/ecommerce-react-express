@@ -20,3 +20,7 @@ div.priceDiv p span:first-of-type {
 div.priceDiv p span:last-of-type {
   right: 0;
 }
+
+p.price {
+  font-weight: 1000;
+}

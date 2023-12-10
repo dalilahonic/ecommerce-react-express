@@ -1,0 +1,13 @@
+div.pickup div:first-of-type {
+  display: flex;
+  position: relative;
+}
+
+.pickup div:first-of-type p {
+  position: absolute;
+  right: 5%;
+}
+
+.pickup div:nth-of-type(2) {
+  padding-block: 30px;
+}

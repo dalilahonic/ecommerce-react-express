@@ -1,0 +1,14 @@
+div.yourCartMain {
+  margin-block: 50px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+div.yourCartMain div:first-child p {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+}

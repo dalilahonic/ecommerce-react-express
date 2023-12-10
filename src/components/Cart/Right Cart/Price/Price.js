@@ -11,7 +11,7 @@ function Price({ tip, price }) {
         <span>Tip:</span>
         <span>${tip}</span>
       </p>
-      <p>
+      <p className={classes.price}>
         <span>Total:</span>
         <span>
           ${(Number(price) + Number(tip)).toFixed(2)}

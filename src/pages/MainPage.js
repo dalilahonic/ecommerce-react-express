@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
-import Header from '../Main Page/Header/Header';
-import ImageComponent from '../Main Page/Image Component/ImageComponent';
-import MenuDisplay from '../Main Page/Meal Card/Menu Display/MenuDisplay';
-import MainSearch from '../Main Page/Search Bar/Main/MainSearch';
-import SectionsContext from '../../context/SectionsContext';
-import useTransformText from '../../hooks/useTransformText';
-import useFetch from '../../hooks/useFetch';
+import Header from '../components/Main Page/Header/Header';
+import ImageComponent from '../components/Main Page/Image Component/ImageComponent';
+import MenuDisplay from '../components/Main Page/Meal Card/Menu Display/MenuDisplay';
+import MainSearch from '../components/Main Page/Search Bar/Main/MainSearch';
+import SectionsContext from '../context/SectionsContext';
+import useTransformText from '../hooks/useTransformText';
+import useFetch from '../hooks/useFetch';
 
 function MainPage({
   orderInfo,

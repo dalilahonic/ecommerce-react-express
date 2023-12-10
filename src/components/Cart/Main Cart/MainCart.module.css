@@ -1,0 +1,11 @@
+div.cart {
+  width: 100%;
+  padding-block: 20px;
+}
+
+div.cartChild {
+  width: 70%;
+  margin: auto;
+  padding: 20px 60px;
+  display: flex;
+}

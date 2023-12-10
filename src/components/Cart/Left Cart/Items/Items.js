@@ -1,5 +1,5 @@
-import AddMoreItems from '../Buttons/AddMoreItems';
-import ItemCart from './ItemCart';
+import AddMoreItems from '../../Buttons/AddMoreItems';
+import ItemCart from '../Cart Item/ItemCart';
 import classes from './Items.module.css';
 
 function Items({
