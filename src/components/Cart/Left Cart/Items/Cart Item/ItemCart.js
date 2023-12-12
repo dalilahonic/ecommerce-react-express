@@ -1,4 +1,4 @@
-import MinusAndPlusButtons from '../../Buttons/MinusAndPlusButtons';
+import MinusAndPlusButtons from '../../../../Buttons/MinusAndPlusButtons';
 import classes from './ItemCart.module.css';
 
 function ItemCart({
