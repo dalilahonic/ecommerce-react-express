@@ -3,15 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function HeaderRight({
   setIsCartWindowOpen,
-  amountCard,
   cartIsHovered,
   setCartIsHovered,
   isCartWindowOpen,
   setIsCartOpen,
 }) {
+  const cartAmount = useSelector(
+    (state) => state.cartAmount.amount
+  );
   function handleMouseEnter() {
     setIsCartWindowOpen(true);
     setCartIsHovered(true);
@@ -53,7 +56,7 @@ function HeaderRight({
             className={classes.icon}
             icon={faCartShopping}
           />
-          <p>{amountCard}</p>
+          <p>{cartAmount}</p>
         </div>
       </div>
     </>

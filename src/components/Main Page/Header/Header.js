@@ -3,11 +3,8 @@ import { useState } from 'react';
 import HeaderLeft from './Left Header/HeaderLeft';
 import HeaderRight from './Right Header/HeaderRight';
 import CartWindow from './Cart Window/CartWindow';
-import { useEffect } from 'react';
 
 function Header({
-  orderInfo,
-  setOrderInfo,
   setIsCartOpen,
   amountCard,
   setAmountCard,
@@ -16,25 +13,13 @@ function Header({
     useState(false);
   const [cartIsHovered, setCartIsHovered] = useState(true);
 
-  useEffect(() => {
-    if (orderInfo)
-      setAmountCard(
-        orderInfo.reduce(
-          (acc, curr) => acc + curr.amount,
-          0
-        )
-      );
-  }, [orderInfo, setAmountCard]);
-
   return (
     <>
       <div className={classes.mainHeader}>
         <HeaderLeft />
         <HeaderRight
-          orderInfo={orderInfo}
           isCartWindowOpen={isCartWindowOpen}
           cartIsHovered={cartIsHovered}
-          amountCard={amountCard}
           setIsCartWindowOpen={setIsCartWindowOpen}
           setCartIsHovered={setCartIsHovered}
           setIsCartOpen={setIsCartOpen}
@@ -42,10 +27,7 @@ function Header({
         {isCartWindowOpen && (
           <CartWindow
             setCartIsHovered={setCartIsHovered}
-            orderInfo={orderInfo}
-            amountCard={amountCard}
             setIsCartOpen={setIsCartOpen}
-            setOrderInfo={setOrderInfo}
           />
         )}
       </div>

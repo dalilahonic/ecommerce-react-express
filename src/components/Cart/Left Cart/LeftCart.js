@@ -4,23 +4,12 @@ import HeaderCart from './Header/HeaderCart';
 import Items from './Items/Items';
 import classes from './LeftCart.module.css';
 
-export default function LeftCart({
-  setIsCartOpen,
-  amountCard,
-  orderInfo,
-  setOrderInfo,
-  setAmountCard,
-}) {
+export default function LeftCart({ setIsCartOpen }) {
   return (
     <div className={classes.yourCartMain}>
       <ContinueShopping setIsCartOpen={setIsCartOpen} />
-      <HeaderCart amountCard={amountCard} />
-      <Items
-        orderInfo={orderInfo}
-        setOrderInfo={setOrderInfo}
-        setIsCartOpen={setIsCartOpen}
-        setAmountCard={setAmountCard}
-      />
+      <HeaderCart />
+      <Items setIsCartOpen={setIsCartOpen} />
     </div>
   );
 }

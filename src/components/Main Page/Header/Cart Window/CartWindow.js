@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import OrderButton from '../../../Buttons/OrderButton';
 import classes from './CartWindow.module.css';
 import WindowItem from './WindowItem';
+import { useSelector } from 'react-redux';
 
-function CartWindow({
-  orderInfo,
-  amountCard,
-  setCartIsHovered,
-  setIsCartOpen,
-  setOrderInfo,
-}) {
+function CartWindow({ setCartIsHovered, setIsCartOpen }) {
+  const orderInfo = useSelector((state) => state.order);
+  const cartAmount = useSelector(
+    (state) => state.cartAmount.amount
+  );
   const [totalPrice, setTotalPrice] = useState(0);
 
   function handleMouseEnter() {
@@ -32,25 +31,21 @@ function CartWindow({
     setTotalPrice(price);
   }, [orderInfo]);
 
-  function handleAddAmount(title, sign) {
-    setOrderInfo((prev) => {
-      const targetIndex = prev.findIndex(
-        (el) => el.title === title
-      );
-      let obj = [...prev];
-
-      if (targetIndex !== -1) {
-        if (sign === '+') obj[targetIndex].amount++;
-        else if (
-          sign === '-' &&
-          obj[targetIndex].amount > 0
-        )
-          obj[targetIndex].amount--;
-      }
-
-      return obj;
-    });
-  }
+  //   setOrderInfo((prev) => {
+  //     const targetIndex = prev.findIndex(
+  //       (el) => el.title === title
+  //     );
+  //     let obj = [...prev];
+  //     if (targetIndex !== -1) {
+  //       if (sign === '+') obj[targetIndex].amount++;
+  //       else if (
+  //         sign === '-' &&
+  //         obj[targetIndex].amount > 0
+  //       )
+  //         obj[targetIndex].amount--;
+  //     }
+  //     return obj;
+  //   });
 
   return (
     <div
@@ -58,7 +53,7 @@ function CartWindow({
       onMouseLeave={handleMouseLeave}
       className={classes.cartWindow}
     >
-      <h3>Your Cart ({amountCard})</h3>
+      <h3>Your Cart ({cartAmount})</h3>
       {orderInfo.length > 0 ? (
         orderInfo.map((el, i) => {
           return (
@@ -68,9 +63,6 @@ function CartWindow({
               imgUrl={el.imgUrl}
               price={el.price}
               amount={el.amount}
-              onAddAmount={(sign) =>
-                handleAddAmount(el.title, sign)
-              }
             />
           );
         })

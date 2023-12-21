@@ -1,6 +1,7 @@
 import classes from './OrderButton.module.css';
 import useCalculatePrice from '../../hooks/useCalculatePrice';
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 function OrderButton({
   price,

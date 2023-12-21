@@ -1,25 +1,29 @@
+import { useDispatch } from 'react-redux';
 import classes from './MinusAndPlusButtons.module.css';
+import { cartAmountActions } from '../../store';
 
 function MinusAndPlusButtons({
+  className = '',
   amount,
   setAmount,
-  className = '',
-  onAddAmount,
-  onAdd,
+  title,
+  onAddItem,
 }) {
+  const dispatch = useDispatch();
   function handlePlusClick() {
+    // adding items from Cart Window and Cart
+    if (onAddItem) {
+      onAddItem(title);
+      dispatch(cartAmountActions.increment(1));
+    }
+
+    // adding items from Popup
     if (setAmount) setAmount((prev) => prev + 1);
-    if (onAddAmount) onAddAmount('+');
-    if (onAdd) onAdd('+');
   }
 
   function handleMinusClick() {
     if (amount > 1) {
-      if (setAmount) {
-        setAmount((prev) => prev - 1);
-      }
-      if (onAddAmount) onAddAmount('-');
-      if (onAdd) onAdd('-');
+      if (setAmount) setAmount((prev) => prev - 1);
     }
   }
 

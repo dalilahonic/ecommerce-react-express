@@ -1,14 +1,17 @@
 import classes from './WindowItem.module.css';
 import MinusAndPlusButtons from '../../../Buttons/MinusAndPlusButtons';
+import { useDispatch } from 'react-redux';
+import { orderActions } from '../../../../store';
 
-function WindowItem({
-  imgUrl,
-  title,
-  price,
-  amount,
-  onAddAmount,
-}) {
+function WindowItem({ imgUrl, title, price, amount }) {
+  const dispatch = useDispatch();
   let finalPrice = price * amount;
+
+  function handleAddItem(title) {
+    dispatch(
+      orderActions.addToCart({ title: title, amount: 1 })
+    );
+  }
 
   return (
     <div className={classes.cartContainer}>
@@ -23,7 +26,8 @@ function WindowItem({
         <MinusAndPlusButtons
           amount={amount}
           className='padding'
-          onAddAmount={(sign) => onAddAmount(sign)}
+          onAddItem={handleAddItem}
+          title={title}
         />
       </div>
     </div>

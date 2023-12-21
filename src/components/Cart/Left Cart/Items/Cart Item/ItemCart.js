@@ -1,35 +1,18 @@
+import { useDispatch, useSelector } from 'react-redux';
 import MinusAndPlusButtons from '../../../../Buttons/MinusAndPlusButtons';
 import classes from './ItemCart.module.css';
+import { useState } from 'react';
+import { orderActions } from '../../../../../store';
 
-function ItemCart({
-  title,
-  amount,
-  price,
-  imgUrl,
-  setOrderInfo,
-  onAdd,
-}) {
-  function handleAddAmount(title, sign) {
-    setOrderInfo((prev) => {
-      const targetIndex = prev.findIndex(
-        (el) => el.title === title
-      );
-      let obj = [...prev];
-
-      if (targetIndex !== -1) {
-        if (sign === '+') obj[targetIndex].amount++;
-        else if (
-          sign === '-' &&
-          obj[targetIndex].amount > 0
-        )
-          obj[targetIndex].amount--;
-      }
-
-      return obj;
-    });
-  }
-
+function ItemCart({ title, amount, price, imgUrl }) {
+  const dispatch = useDispatch();
   let finalPrice = price * amount;
+
+  function handleAddItem(title) {
+    dispatch(
+      orderActions.addToCart({ title: title, amount: 1 })
+    );
+  }
 
   return (
     <div className={classes.item}>
@@ -44,12 +27,10 @@ function ItemCart({
         <div>
           <MinusAndPlusButtons
             key={title}
+            title={title}
             amount={amount}
             className='gap'
-            onAddAmount={(sign) =>
-              handleAddAmount(title, sign)
-            }
-            onAdd={(sign) => onAdd(sign)}
+            onAddItem={handleAddItem}
           />
         </div>
       </div>

@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import MainCart from '../components/Cart/Main Cart/MainCart';
+import { useSelector } from 'react-redux';
 
 const tips = ['10%', '15%', '20%', 'other'];
 
 function CartPage({
-  orderInfo,
   setOrderInfo,
   amountCard,
   setAmountCard,
   setIsCartOpen,
 }) {
+  const orderInfo = useSelector((state) => state.order);
   const [selected, setSelected] = useState('15%');
   const [price, setPrice] = useState(undefined);
   const [tip, setTip] = useState((15 / 100) * price);
@@ -36,10 +37,6 @@ function CartPage({
   return (
     <MainCart
       setIsCartOpen={setIsCartOpen}
-      amountCard={amountCard}
-      orderInfo={orderInfo}
-      setOrderInfo={setOrderInfo}
-      setAmountCard={setAmountCard}
       onSelect={handleSelect}
       selected={selected}
       tip={tip}

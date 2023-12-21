@@ -5,10 +5,6 @@ import RightCart from '../Right Cart/RightCart';
 
 export default function MainCart({
   setIsCartOpen,
-  amountCard,
-  orderInfo,
-  setOrderInfo,
-  setAmountCard,
   onSelect,
   selected,
   tips,
@@ -22,10 +18,6 @@ export default function MainCart({
         <div className={classes.cartChild}>
           <LeftCart
             setIsCartOpen={setIsCartOpen}
-            amountCard={amountCard}
-            orderInfo={orderInfo}
-            setOrderInfo={setOrderInfo}
-            setAmountCard={setAmountCard}
           />
           <RightCart
             onSelect={onSelect}

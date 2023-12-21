@@ -8,8 +8,6 @@ import useTransformText from '../hooks/useTransformText';
 import useFetch from '../hooks/useFetch';
 
 function MainPage({
-  orderInfo,
-  setOrderInfo,
   setIsCartOpen,
   onOrder,
   amountCard,
@@ -31,8 +29,6 @@ function MainPage({
   return (
     <>
       <Header
-        orderInfo={orderInfo}
-        setOrderInfo={setOrderInfo}
         setIsCartOpen={setIsCartOpen}
         amountCard={amountCard}
         setAmountCard={setAmountCard}

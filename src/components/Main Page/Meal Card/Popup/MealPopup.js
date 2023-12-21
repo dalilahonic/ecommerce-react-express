@@ -7,6 +7,11 @@ import { useState } from 'react';
 import MainOptions from '../../Options/MainOptions';
 import PopupInfo from './PopupInfo';
 import useCalculatePrice from '../../../../hooks/useCalculatePrice';
+import { useDispatch } from 'react-redux';
+import {
+  cartAmountActions,
+  orderActions,
+} from '../../../../store';
 
 function MealPopup({
   title,
@@ -16,9 +21,10 @@ function MealPopup({
   alt,
   setIsMealOpen,
   options,
-  onOrder,
   onClose,
 }) {
+  const dispatch = useDispatch();
+
   const [optionsPrice, setOptionsPrice] = useState([]);
   const [amount, setAmount] = useState(1);
 
@@ -43,7 +49,8 @@ function MealPopup({
     });
   }
   function handleOrder(orderInfo) {
-    onOrder(orderInfo);
+    dispatch(orderActions.addToCart({ orderInfo }));
+    dispatch(cartAmountActions.increment(amount));
     onClose();
   }
 
