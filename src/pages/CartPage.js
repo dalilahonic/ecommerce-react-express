@@ -4,12 +4,7 @@ import { useSelector } from 'react-redux';
 
 const tips = ['10%', '15%', '20%', 'other'];
 
-function CartPage({
-  setOrderInfo,
-  amountCard,
-  setAmountCard,
-  setIsCartOpen,
-}) {
+function CartPage({ setIsCartOpen }) {
   const orderInfo = useSelector((state) => state.order);
   const [selected, setSelected] = useState('15%');
   const [price, setPrice] = useState(undefined);

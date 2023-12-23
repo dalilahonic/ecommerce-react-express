@@ -8,6 +8,7 @@ function MinusAndPlusButtons({
   setAmount,
   title,
   onAddItem,
+  onRemoveItem,
 }) {
   const dispatch = useDispatch();
   function handlePlusClick() {
@@ -24,6 +25,7 @@ function MinusAndPlusButtons({
   function handleMinusClick() {
     if (amount > 1) {
       if (setAmount) setAmount((prev) => prev - 1);
+      if (onRemoveItem) onRemoveItem(title);
     }
   }
 

@@ -10,7 +10,6 @@ function MainMeal({
   alt,
   id,
   options,
-  onOrder,
 }) {
   const [isMealOpen, setIsMealOpen] = useState(false);
 
@@ -44,7 +43,6 @@ function MainMeal({
           alt={alt}
           setIsMealOpen={setIsMealOpen}
           options={options}
-          onOrder={onOrder}
           onClose={handleClose}
         />
       )}

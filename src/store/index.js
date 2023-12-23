@@ -30,6 +30,13 @@ const orderInfoSlice = createSlice({
         });
       }
     },
+    minus(state, action) {
+      const index = state.findIndex(
+        (item) => item?.title === action.payload
+      );
+
+      state[index].amount--;
+    },
   },
 });
 

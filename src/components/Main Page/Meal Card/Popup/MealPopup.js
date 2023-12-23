@@ -48,6 +48,7 @@ function MealPopup({
       }
     });
   }
+  
   function handleOrder(orderInfo) {
     dispatch(orderActions.addToCart({ orderInfo }));
     dispatch(cartAmountActions.increment(amount));

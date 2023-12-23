@@ -1,8 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import MinusAndPlusButtons from '../../../../Buttons/MinusAndPlusButtons';
 import classes from './ItemCart.module.css';
-import { useState } from 'react';
-import { orderActions } from '../../../../../store';
+import {
+  cartAmountActions,
+  orderActions,
+} from '../../../../../store';
 
 function ItemCart({ title, amount, price, imgUrl }) {
   const dispatch = useDispatch();
@@ -12,6 +14,11 @@ function ItemCart({ title, amount, price, imgUrl }) {
     dispatch(
       orderActions.addToCart({ title: title, amount: 1 })
     );
+  }
+
+  function handleRemoveItem(title) {
+    dispatch(orderActions.minus(title));
+    dispatch(cartAmountActions.decrement(1));
   }
 
   return (
@@ -31,6 +38,7 @@ function ItemCart({ title, amount, price, imgUrl }) {
             amount={amount}
             className='gap'
             onAddItem={handleAddItem}
+            onRemoveItem={handleRemoveItem}
           />
         </div>
       </div>

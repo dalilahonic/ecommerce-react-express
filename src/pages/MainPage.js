@@ -7,12 +7,7 @@ import SectionsContext from '../context/SectionsContext';
 import useTransformText from '../hooks/useTransformText';
 import useFetch from '../hooks/useFetch';
 
-function MainPage({
-  setIsCartOpen,
-  onOrder,
-  amountCard,
-  setAmountCard,
-}) {
+function MainPage({ setIsCartOpen }) {
   const sectionNames = useContext(SectionsContext);
   const [inputValue, setInputValue] = useState('');
 
@@ -28,11 +23,7 @@ function MainPage({
 
   return (
     <>
-      <Header
-        setIsCartOpen={setIsCartOpen}
-        amountCard={amountCard}
-        setAmountCard={setAmountCard}
-      />
+      <Header setIsCartOpen={setIsCartOpen} />
       <ImageComponent />
       <MainSearch
         onChangeInputValue={onChangeInputValue}
@@ -46,7 +37,6 @@ function MainPage({
           heading={el}
           transformedHeading={transformedHeading[index]}
           inputValue={inputValue}
-          onOrder={onOrder}
         />
       ))}
     </>
