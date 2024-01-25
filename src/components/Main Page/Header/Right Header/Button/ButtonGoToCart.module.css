@@ -1,0 +1,12 @@
+.orderBtnHeader {
+  border: 2px solid #463939;
+  background-color: white;
+  border-radius: 20px;
+  width: 101px;
+  height: 34px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

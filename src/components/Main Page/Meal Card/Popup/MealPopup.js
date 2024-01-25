@@ -7,11 +7,13 @@ import { useState } from 'react';
 import MainOptions from '../../Options/MainOptions';
 import PopupInfo from './PopupInfo';
 import useCalculatePrice from '../../../../hooks/useCalculatePrice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   cartAmountActions,
   orderActions,
 } from '../../../../store';
+import { useParams } from 'react-router';
+import useFetch from '../../../../hooks/useFetch';
 
 function MealPopup({
   title,
@@ -24,6 +26,21 @@ function MealPopup({
   onClose,
 }) {
   const dispatch = useDispatch();
+  const params = useParams().productId;
+
+  const [mealsData] = useFetch(
+    'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
+  );
+
+  const target = Object.keys(mealsData).forEach((obj) => {
+    return mealsData[obj].find((meal) => {
+      if (meal.mealName === params.split('-').join(' ')) {
+        return meal;
+      }
+    });
+  });
+
+  console.log(target);
 
   const [optionsPrice, setOptionsPrice] = useState([]);
   const [amount, setAmount] = useState(1);
@@ -48,7 +65,7 @@ function MealPopup({
       }
     });
   }
-  
+
   function handleOrder(orderInfo) {
     dispatch(orderActions.addToCart({ orderInfo }));
     dispatch(cartAmountActions.increment(amount));
@@ -60,7 +77,7 @@ function MealPopup({
   return (
     <div className={classes.mealOverlay}>
       <div className={classes.mealPopUp}>
-        <PopupInfo
+        {/* <PopupInfo
           imgUrl={imgUrl}
           alt={alt}
           price={price}
@@ -90,7 +107,7 @@ function MealPopup({
           title={title}
           text='Add to Order'
           priceText={finalPrice * amount}
-        />
+        /> */}
       </div>
     </div>
   );

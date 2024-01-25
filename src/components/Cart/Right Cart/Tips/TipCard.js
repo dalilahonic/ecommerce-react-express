@@ -1,30 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import classes from './TipCard.module.css';
 
-function TipCard({
-  content,
-  onSelect,
-  isSelected,
-  orderInfo,
-  onChangeTip,
-  price,
-}) {
-  const [tip, setTip] = useState((15 / 100) * price);
+function TipCard({ content, onChangeTip, selected }) {
+  const totalPrice = useSelector(
+    (state) => state.order.totalPrice
+  );
 
-  useEffect(() => {
-    setTip((Number(content.slice(0, 2)) / 100) * price);
-  }, [orderInfo, price, content, onChangeTip, tip]);
+  const tip = totalPrice * (parseInt(content) / 100);
+
+  function handleClick() {
+    onChangeTip(content);
+  }
 
   return (
-    <div
-      className={`${classes.tipDiv} ${
-        isSelected ? classes.black : ''
-      }`}
-      onClick={(e) => onSelect(content, tip.toFixed(2))}
-    >
-      <p>{content}</p>
-      {content !== 'other' && <p>${tip?.toFixed(2)}</p>}
-    </div>
+    <>
+      <div
+        className={`${classes.tipDiv} ${
+          selected ? classes.black : ''
+        }`}
+        onClick={handleClick}
+      >
+        <p>{content}</p>
+        {content !== 'other' && <p>${tip?.toFixed(2)}</p>}
+      </div>
+    </>
   );
 }
 export default TipCard;

@@ -1,7 +1,7 @@
 import classes from './OrderButton.module.css';
 import useCalculatePrice from '../../hooks/useCalculatePrice';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 function OrderButton({
   price,
@@ -15,6 +15,7 @@ function OrderButton({
   priceText,
   onOpenCart,
 }) {
+  const navigate = useNavigate();
   const [orderInfo, setOrderInfo] = useState({
     title: title,
     price: 0,
@@ -36,6 +37,8 @@ function OrderButton({
   function handleClick() {
     if (onOrder) onOrder(orderInfo);
     if (onOpenCart) onOpenCart();
+
+    if (text === 'Continue to Cart') navigate('/cart');
   }
 
   return (

@@ -1,15 +1,4 @@
-.orderBtnHeader {
-  border: 2px solid #463939;
-  background-color: white;
-  border-radius: 20px;
-  width: 101px;
-  height: 34px;
-  font-weight: 700;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 div.headerRight {
   flex: 1;
@@ -18,21 +7,4 @@ div.headerRight {
   gap: 18px;
   justify-content: center;
   background-color: white;
-}
-div.btnIcon {
-  display: flex;
-  align-items: center;
-}
-
-div.btnIcon p {
-  font-weight: 900;
-}
-
-.icon {
-  font-size: 20px;
-  margin: 5px;
-}
-
-.icon:hover {
-  cursor: pointer;
 }

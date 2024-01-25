@@ -1,10 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AddMoreItems from '../../../Buttons/AddMoreItems';
 import ItemCart from './Cart Item/ItemCart';
 import classes from './Items.module.css';
 
-function Items({ setIsCartOpen }) {
-  const orderInfo = useSelector((state) => state.order);
+function Items() {
+  const orderInfo = useSelector(
+    (state) => state.order.items
+  );
 
   return (
     <div className={classes.items}>
@@ -24,7 +26,7 @@ function Items({ setIsCartOpen }) {
         <p>Your cart is empty</p>
       )}
       <div className={classes.btn}>
-        <AddMoreItems setIsCartOpen={setIsCartOpen} />
+        <AddMoreItems />
       </div>
     </div>
   );

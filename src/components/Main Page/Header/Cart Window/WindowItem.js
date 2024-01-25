@@ -3,10 +3,10 @@ import MinusAndPlusButtons from '../../../Buttons/MinusAndPlusButtons';
 import { useDispatch } from 'react-redux';
 import { orderActions } from '../../../../store';
 import { cartAmountActions } from '../../../../store';
+import Item from './Item';
 
-function WindowItem({ imgUrl, title, price, amount }) {
+function WindowItem({ imgUrl, title, amount, totalPrice }) {
   const dispatch = useDispatch();
-  let finalPrice = price * amount;
 
   function handleAddItem(title) {
     dispatch(
@@ -21,13 +21,11 @@ function WindowItem({ imgUrl, title, price, amount }) {
 
   return (
     <div className={classes.cartContainer}>
-      <div className={classes.cartItem}>
-        <img src={imgUrl} alt=''></img>
-        <h5>{title}</h5>
-        <div className={classes.priceDiv}>
-          <p>${finalPrice.toFixed(2)}</p>
-        </div>
-      </div>
+      <Item
+        imgUrl={imgUrl}
+        totalPrice={totalPrice}
+        title={title}
+      />
       <div>
         <MinusAndPlusButtons
           amount={amount}

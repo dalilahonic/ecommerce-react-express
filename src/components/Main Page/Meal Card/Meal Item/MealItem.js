@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import classes from './MealItem.module.css';
 
 function MealItem({
@@ -6,12 +7,17 @@ function MealItem({
   price,
   imgUrl,
   alt,
-  openPopUp,
+  // openPopUp,
 }) {
+  const navigate = useNavigate();
+
+  const path = title.split(' ').join('-');
+
   return (
     <div
       className={`${classes.mealCard}`}
-      onClick={openPopUp}
+      // onClick={openPopUp}
+      onClick={() => navigate(`/${path}`)}
     >
       <div className={classes.mealInformation}>
         <p> {title}</p>

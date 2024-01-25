@@ -1,0 +1,18 @@
+div.btnIcon {
+    display: flex;
+    align-items: center;
+  }
+  
+  div.btnIcon p {
+    font-weight: 900;
+  }
+  
+  .icon {
+    font-size: 20px;
+    margin: 5px;
+  }
+  
+  .icon:hover {
+    cursor: pointer;
+  }
+  

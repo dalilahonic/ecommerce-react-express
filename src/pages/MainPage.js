@@ -5,17 +5,12 @@ import MenuDisplay from '../components/Main Page/Meal Card/Menu Display/MenuDisp
 import MainSearch from '../components/Main Page/Search Bar/Main/MainSearch';
 import SectionsContext from '../context/SectionsContext';
 import useTransformText from '../hooks/useTransformText';
-import useFetch from '../hooks/useFetch';
 
-function MainPage({ setIsCartOpen }) {
+function MainPage() {
   const sectionNames = useContext(SectionsContext);
   const [inputValue, setInputValue] = useState('');
 
   const transformedHeading = useTransformText(sectionNames);
-
-  const [mealsData] = useFetch(
-    'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
-  );
 
   function onChangeInputValue(value) {
     setInputValue(value);
@@ -23,7 +18,7 @@ function MainPage({ setIsCartOpen }) {
 
   return (
     <>
-      <Header setIsCartOpen={setIsCartOpen} />
+      <Header />
       <ImageComponent />
       <MainSearch
         onChangeInputValue={onChangeInputValue}
@@ -33,7 +28,6 @@ function MainPage({ setIsCartOpen }) {
         <MenuDisplay
           id={`meal${index}`}
           key={index}
-          mealsData={mealsData}
           heading={el}
           transformedHeading={transformedHeading[index]}
           inputValue={inputValue}

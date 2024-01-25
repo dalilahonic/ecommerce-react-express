@@ -1,0 +1,36 @@
+form.tipForm {
+  display: flex;
+  gap: 5%;
+  padding-block: 15px;
+}
+
+input.tipInput {
+  border: 1px solid #d3d3d3;
+  padding-inline: 10px;
+  width: 65%;
+  height: 48px;
+  font-size: 18px;
+  color: #212121;
+  border-radius: 5px;
+}
+
+.tipInput:hover {
+  border: 1px solid #707070;
+}
+
+.tipInput:focus {
+  border: 1px solid #707070;
+  outline: none;
+}
+
+button.tipButton {
+  width: 30%;
+  height: 48px;
+  border-radius: 32px;
+  border: 1px solid #212121;
+  background-color: white;
+}
+
+button.tipButton:hover {
+  background-color: #eeeeee;
+}

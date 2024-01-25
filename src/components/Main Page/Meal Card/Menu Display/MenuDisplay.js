@@ -1,14 +1,17 @@
 import classes from './MenuDisplay.module.css';
 import useFilter from '../../../../hooks/useFilter';
 import MainMeal from '../Main/MainMeal';
+import useFetch from '../../../../hooks/useFetch';
 
 function MenuDisplay({
-  mealsData,
   heading,
   inputValue,
   transformedHeading,
   id,
 }) {
+  const [mealsData] = useFetch(
+    'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
+  );
   const [filteredData] = useFilter(
     mealsData,
     heading,

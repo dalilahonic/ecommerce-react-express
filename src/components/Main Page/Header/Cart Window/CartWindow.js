@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react';
 import OrderButton from '../../../Buttons/OrderButton';
 import classes from './CartWindow.module.css';
 import WindowItem from './WindowItem';
 import { useSelector } from 'react-redux';
 
-function CartWindow({ setCartIsHovered, setIsCartOpen }) {
-  const orderInfo = useSelector((state) => state.order);
+function CartWindow({ setCartIsHovered }) {
+  const orderInfo = useSelector(
+    (state) => state.order.items
+  );
+
   const cartAmount = useSelector(
     (state) => state.cartAmount.amount
   );
-  const [totalPrice, setTotalPrice] = useState(0);
+  const totalPrice = useSelector(
+    (state) => state.order.totalPrice
+  );
 
   function handleMouseEnter() {
     setCartIsHovered(true);
@@ -18,34 +22,6 @@ function CartWindow({ setCartIsHovered, setIsCartOpen }) {
   function handleMouseLeave() {
     setCartIsHovered(false);
   }
-
-  function handleOpenCart() {
-    setIsCartOpen(true);
-  }
-
-  useEffect(() => {
-    let price = 0;
-    orderInfo.forEach((el) => {
-      price += el.price * el.amount;
-    });
-    setTotalPrice(price);
-  }, [orderInfo]);
-
-  //   setOrderInfo((prev) => {
-  //     const targetIndex = prev.findIndex(
-  //       (el) => el.title === title
-  //     );
-  //     let obj = [...prev];
-  //     if (targetIndex !== -1) {
-  //       if (sign === '+') obj[targetIndex].amount++;
-  //       else if (
-  //         sign === '-' &&
-  //         obj[targetIndex].amount > 0
-  //       )
-  //         obj[targetIndex].amount--;
-  //     }
-  //     return obj;
-  //   });
 
   return (
     <div
@@ -61,8 +37,8 @@ function CartWindow({ setCartIsHovered, setIsCartOpen }) {
               key={i}
               title={el.title}
               imgUrl={el.imgUrl}
-              price={el.price}
               amount={el.amount}
+              totalPrice={el.totalPriceByItem}
             />
           );
         })
@@ -75,7 +51,6 @@ function CartWindow({ setCartIsHovered, setIsCartOpen }) {
             className='cart'
             text='Continue to Cart'
             priceText={totalPrice}
-            onOpenCart={handleOpenCart}
           />
         )}
       </div>

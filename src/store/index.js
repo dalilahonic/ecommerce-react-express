@@ -4,10 +4,14 @@ import {
 } from '@reduxjs/toolkit';
 const orderInfoSlice = createSlice({
   name: 'order-slice',
-  initialState: [],
+  initialState: {
+    items: [],
+    totalPrice: 0,
+    totalItems: 0,
+  },
   reducers: {
     addToCart(state, action) {
-      const index = state.findIndex(
+      const index = state.items.findIndex(
         (item) =>
           item?.title === action.payload.title ||
           item?.title === action.payload.orderInfo?.title
@@ -16,12 +20,13 @@ const orderInfoSlice = createSlice({
       const obj =
         action.payload.orderInfo || action.payload;
 
-      if (index !== -1 || !obj?.title) {
-        state[index].amount += Number(obj.amount);
-        state[index].totalPriceByItem +=
-          obj.amount * obj.price;
+      if (index !== -1) {
+        state.items[index].amount += Number(obj.amount);
+        state.items[index].totalPriceByItem =
+          state.items[index].amount *
+          state.items[index].price;
       } else {
-        state.push({
+        state.items.push({
           title: obj.title,
           amount: Number(obj.amount),
           price: obj.price,
@@ -29,13 +34,26 @@ const orderInfoSlice = createSlice({
           totalPriceByItem: obj.amount * obj.price,
         });
       }
+
+      state.totalPrice = state.items.reduce((acc, obj) => {
+        return (acc += Number(obj.totalPriceByItem));
+      }, 0);
     },
+
     minus(state, action) {
-      const index = state.findIndex(
+      const index = state.items.findIndex(
         (item) => item?.title === action.payload
       );
 
-      state[index].amount--;
+      state.items[index].amount--;
+
+      state.items[index].totalPriceByItem =
+        state.items[index].amount *
+        state.items[index].price;
+
+      state.totalPrice = state.items.reduce((acc, obj) => {
+        return (acc += Number(obj.totalPriceByItem));
+      }, 0);
     },
   },
 });
