@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router';
 import classes from './BtnExit.module.css';
 
-function BtnExit({ setIsMealOpen }) {
+function BtnExit() {
+  const navigate = useNavigate('');
   function handleClick() {
-    setIsMealOpen(false);
+    navigate('/');
     document.body.classList.remove('scrollLock');
   }
 

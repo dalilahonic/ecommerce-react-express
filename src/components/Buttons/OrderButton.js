@@ -35,7 +35,10 @@ function OrderButton({
   }, [amount, finalPrice, title, imgUrl]);
 
   function handleClick() {
-    if (onOrder) onOrder(orderInfo);
+    if (onOrder) {
+      onOrder(orderInfo);
+      navigate('/');
+    }
     if (onOpenCart) onOpenCart();
 
     if (text === 'Continue to Cart') navigate('/cart');

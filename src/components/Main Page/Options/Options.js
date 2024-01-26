@@ -1,10 +1,11 @@
 import classes from './Options.module.css';
 
 function Options({ name, price, onChecked }) {
+  
   function handleChange(e) {
     onChecked(e.target.checked, price, name);
-
   }
+
   return (
     <div className={classes.option}>
       <label>

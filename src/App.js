@@ -7,12 +7,7 @@ import {
 } from 'react-router-dom';
 import MealPopup from './components/Main Page/Meal Card/Popup/MealPopup';
 
-
 function App() {
-  
-
-  
-
   const router = createBrowserRouter([
     { path: '/', element: <MainPage /> },
     { path: '/cart', element: <CartPage /> },

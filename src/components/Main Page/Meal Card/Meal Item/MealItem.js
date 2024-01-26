@@ -7,7 +7,6 @@ function MealItem({
   price,
   imgUrl,
   alt,
-  // openPopUp,
 }) {
   const navigate = useNavigate();
 
@@ -16,7 +15,6 @@ function MealItem({
   return (
     <div
       className={`${classes.mealCard}`}
-      // onClick={openPopUp}
       onClick={() => navigate(`/${path}`)}
     >
       <div className={classes.mealInformation}>

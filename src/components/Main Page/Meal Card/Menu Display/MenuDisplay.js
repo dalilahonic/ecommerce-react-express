@@ -12,6 +12,9 @@ function MenuDisplay({
   const [mealsData] = useFetch(
     'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
   );
+
+  console.log(mealsData);
+
   const [filteredData] = useFilter(
     mealsData,
     heading,
@@ -39,7 +42,6 @@ function MenuDisplay({
                   price={meal.price}
                   imgUrl={meal.image}
                   alt={meal.mealName}
-                  options={meal.options}
                 />
               ))}
             </div>

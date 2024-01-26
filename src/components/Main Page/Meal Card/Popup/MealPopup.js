@@ -3,11 +3,11 @@ import MinusAndPlusButtons from '../../../Buttons/MinusAndPlusButtons';
 import OrderButton from '../../../Buttons/OrderButton';
 import BtnExit from '../../../Buttons/BtnExit';
 import Seperator from '../../Seperator/Separator';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MainOptions from '../../Options/MainOptions';
 import PopupInfo from './PopupInfo';
 import useCalculatePrice from '../../../../hooks/useCalculatePrice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   cartAmountActions,
   orderActions,
@@ -15,16 +15,11 @@ import {
 import { useParams } from 'react-router';
 import useFetch from '../../../../hooks/useFetch';
 
-function MealPopup({
-  title,
-  description,
-  price,
-  imgUrl,
-  alt,
-  setIsMealOpen,
-  options,
-  onClose,
-}) {
+function MealPopup() {
+  const [target, setTarget] = useState();
+  const [optionsPrice, setOptionsPrice] = useState([]);
+  const [amount, setAmount] = useState(1);
+
   const dispatch = useDispatch();
   const params = useParams().productId;
 
@@ -32,18 +27,20 @@ function MealPopup({
     'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
   );
 
-  const target = Object.keys(mealsData).forEach((obj) => {
-    return mealsData[obj].find((meal) => {
-      if (meal.mealName === params.split('-').join(' ')) {
-        return meal;
-      }
+  useEffect(() => {
+    Object.keys(mealsData).forEach((obj) => {
+      return mealsData[obj].find((meal) => {
+        if (meal.mealName === params.split('-').join(' ')) {
+          setTarget(meal);
+        }
+      });
     });
-  });
+  }, [mealsData, params]);
 
-  console.log(target);
-
-  const [optionsPrice, setOptionsPrice] = useState([]);
-  const [amount, setAmount] = useState(1);
+  function handleOrder(orderInfo) {
+    dispatch(orderActions.addToCart({ orderInfo }));
+    dispatch(cartAmountActions.increment(amount));
+  }
 
   function handleChecked(isChecked, price, name) {
     setOptionsPrice((prev) => {
@@ -66,48 +63,43 @@ function MealPopup({
     });
   }
 
-  function handleOrder(orderInfo) {
-    dispatch(orderActions.addToCart({ orderInfo }));
-    dispatch(cartAmountActions.increment(amount));
-    onClose();
-  }
-
-  let finalPrice = useCalculatePrice(price, optionsPrice);
+  let finalPrice = useCalculatePrice(
+    target?.price,
+    optionsPrice
+  );
 
   return (
     <div className={classes.mealOverlay}>
       <div className={classes.mealPopUp}>
-        {/* <PopupInfo
-          imgUrl={imgUrl}
-          alt={alt}
-          price={price}
-          description={description}
-          title={title}
+        <PopupInfo
+          imgUrl={target?.image}
+          alt={target?.mealName}
+          price={target?.price}
+          description={target?.description}
+          title={target?.mealName}
         />
         <MinusAndPlusButtons
           amount={amount}
           setAmount={setAmount}
         />
         <Seperator classClr='grey' />
-        {options && (
-          <MainOptions
-            onChecked={handleChecked}
-            options={options}
-          />
-        )}
-        <BtnExit setIsMealOpen={setIsMealOpen} />
+        <MainOptions
+          onChecked={handleChecked}
+          options={target?.options}
+        />
+        <BtnExit />
         <Seperator classClr='grey' />
         <Seperator classClr='white' />
         <OrderButton
-          imgUrl={imgUrl}
+          imgUrl={target?.image}
           onOrder={handleOrder}
-          price={price}
+          price={target?.price}
           amount={amount}
           optionsPrice={optionsPrice}
-          title={title}
+          title={target?.mealName}
           text='Add to Order'
           priceText={finalPrice * amount}
-        /> */}
+        />
       </div>
     </div>
   );

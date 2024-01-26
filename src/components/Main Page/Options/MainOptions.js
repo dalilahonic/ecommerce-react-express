@@ -19,12 +19,12 @@ function MainOptions({ options, onChecked }) {
   }
 
   function handleChecked(isChecked, price, name) {
-    onChecked(isChecked, price, name)
+    onChecked(isChecked, price, name);
   }
 
   return (
     <>
-      {options.map((obj, index) => (
+      {options?.map((obj, index) => (
         <div key={index}>
           <HeaderOptions
             onOpen={onOpen}
