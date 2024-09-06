@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import Meal from './models/Meal.js';
 
 dotenv.config();
 
@@ -17,5 +16,5 @@ app.use(bodyParser.json());
 
 mongoose.connect(URI).then(() => {
   console.log(`Server running on ${PORT}`);
-  app.listen(3000);
+  app.listen(PORT);
 });
