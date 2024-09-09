@@ -1,19 +1,36 @@
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Main Page/Header/Header';
 import ImageComponent from '../components/Main Page/Image Component/ImageComponent';
 import MenuDisplay from '../components/Main Page/Meal Card/Menu Display/MenuDisplay';
 import MainSearch from '../components/Main Page/Search Bar/Main/MainSearch';
-import SectionsContext from '../context/SectionsContext';
-import useTransformText from '../hooks/useTransformText';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchItems } from '../store';
 
 function MainPage() {
-  const sectionNames = useContext(SectionsContext);
-  const [inputValue, setInputValue] = useState('');
+  const dispatch = useDispatch();
 
-  const transformedHeading = useTransformText(sectionNames);
+  const [inputValue, setInputValue] = useState('');
 
   function onChangeInputValue(value) {
     setInputValue(value);
+  }
+
+  const { items, status, error } = useSelector(
+    (state) => state.items
+  );
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchItems());
+    }
+  }, [status, dispatch]);
+
+  if (status === 'loading') {
+    return <div> loading </div>;
+  }
+
+  if (status === 'failed') {
+    return <div>Error: {error}</div>;
   }
 
   return (
@@ -24,13 +41,12 @@ function MainPage() {
         onChangeInputValue={onChangeInputValue}
         setInputValue={setInputValue}
       />
-      {sectionNames.map((el, index) => (
+      {items.map((category, id) => (
         <MenuDisplay
-          id={`meal${index}`}
-          key={index}
-          heading={el}
-          transformedHeading={transformedHeading[index]}
+          key={id}
+          categoryHeading={category.name}
           inputValue={inputValue}
+          items={category.meals}
         />
       ))}
     </>

@@ -1,41 +1,27 @@
 import classes from './MenuDisplay.module.css';
 import useFilter from '../../../../hooks/useFilter';
-import MainMeal from '../Main/MainMeal';
-import useFetch from '../../../../hooks/useFetch';
+import MealItem from '../Meal Item/MealItem';
 
 function MenuDisplay({
-  heading,
   inputValue,
-  transformedHeading,
-  id,
+  categoryHeading,
+  items,
 }) {
-  const [mealsData] = useFetch(
-    'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
-  );
+  const [filteredData] = useFilter(items, inputValue);
 
-  console.log(mealsData);
-
-  const [filteredData] = useFilter(
-    mealsData,
-    heading,
-    inputValue,
-    'mealName'
-  );
-
-  const hasMatchingItems =
-    filteredData[heading]?.length > 0;
+  const hasMatchingItems = filteredData?.length > 0;
 
   return (
     <>
       {hasMatchingItems && (
         <>
           <div className={classes.main}>
-            <div className={classes.mealsHeading} id={id}>
-              <h1>{transformedHeading}</h1>
+            <div className={classes.mealsHeading}>
+              <h1>{categoryHeading}</h1>
             </div>
             <div className={classes.mealsContainer}>
-              {filteredData[heading]?.map((meal, index) => (
-                <MainMeal
+              {filteredData.map((meal, index) => (
+                <MealItem
                   key={index}
                   title={meal.mealName}
                   description={meal.description}

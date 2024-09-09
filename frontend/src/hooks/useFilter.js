@@ -1,36 +1,25 @@
 import { useState, useEffect } from 'react';
 
-function useFilter(data, identefier, inputValue, key) {
+function useFilter(data, inputValue) {
   const [filteredData, setFilteredData] = useState({});
 
   useEffect(() => {
-    const filtered = data[identefier]?.filter((el) => {
-      return el[key]
+    const filtered = data.filter((el) => {
+      const mealNameMatch = el.mealName
         .toLowerCase()
         .includes(inputValue.toLowerCase());
+
+      const descriptionMatch = el.description
+        .toLowerCase()
+        .includes(inputValue.toLowerCase());
+
+      return mealNameMatch || descriptionMatch;
     });
 
-    setFilteredData((prevState) => ({
-      ...prevState,
-      [identefier]: filtered,
-    }));
-  }, [inputValue, data, identefier, key]);
+    setFilteredData(filtered);
+  }, [inputValue, data]);
 
   return [filteredData];
 }
 
 export default useFilter;
-
-  // const [filteredData, setFilteredData] = useState({});
-  // useEffect(() => {
-  //   const filtered = mealsData[heading]?.filter((el) => {
-  //     return el.mealName
-  //       .toLowerCase()
-  //       .includes(inputValue.toLowerCase());
-  //   });
-
-  //   setFilteredData((prevState) => ({
-  //     ...prevState,
-  //     [heading]: filtered,
-  //   }));
-  // }, [inputValue, mealsData, heading]);

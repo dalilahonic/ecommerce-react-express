@@ -5,6 +5,8 @@ import Options from './Options';
 function MainOptions({ options, onChecked }) {
   const [isOpenData, setIsOpenData] = useState([]);
 
+  console.log(options);
+
   function onOpen(isOpen, index) {
     setIsOpenData((prev) => {
       const updatedData = [...prev];
@@ -24,15 +26,15 @@ function MainOptions({ options, onChecked }) {
 
   return (
     <>
-      {options?.map((obj, index) => (
+      {options?.map((optionData, index) => (
         <div key={index}>
           <HeaderOptions
             onOpen={onOpen}
-            title={obj.write}
+            title={optionData.prompt}
             index={index}
           />
           {isOpenData[index]?.isOpen &&
-            obj.options.map((option, index) => (
+            optionData.options.map((option, index) => (
               <Options
                 onChecked={handleChecked}
                 key={index}

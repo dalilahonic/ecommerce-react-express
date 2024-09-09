@@ -15,7 +15,13 @@ function MealItem({
   return (
     <div
       className={`${classes.mealCard}`}
-      onClick={() => navigate(`/${path}`)}
+      onClick={() =>
+        navigate(`/${path}`, {
+          state: {
+            title,
+          },
+        })
+      }
     >
       <div className={classes.mealInformation}>
         <p> {title}</p>

@@ -12,8 +12,8 @@ import {
   cartAmountActions,
   orderActions,
 } from '../../../../store';
-import { useParams } from 'react-router';
-import useFetch from '../../../../hooks/useFetch';
+import { useLocation } from 'react-router';
+import api from '../../../../services/axios';
 
 function MealPopup() {
   const [target, setTarget] = useState();
@@ -21,21 +21,22 @@ function MealPopup() {
   const [amount, setAmount] = useState(1);
 
   const dispatch = useDispatch();
-  const params = useParams().productId;
-
-  const [mealsData] = useFetch(
-    'https://react-10d3f-default-rtdb.firebaseio.com/meals.json'
-  );
+  const { state } = useLocation();
 
   useEffect(() => {
-    Object.keys(mealsData).forEach((obj) => {
-      return mealsData[obj].find((meal) => {
-        if (meal.mealName === params.split('-').join(' ')) {
-          setTarget(meal);
-        }
-      });
-    });
-  }, [mealsData, params]);
+    const fetchMeal = async () => {
+      try {
+        const response = await api.get(
+          `items/${state.title}`
+        );
+        setTarget(response.data);
+      } catch (err) {}
+    };
+
+    fetchMeal();
+  }, [state]);
+
+  console.log(target);
 
   function handleOrder(orderInfo) {
     dispatch(orderActions.addToCart({ orderInfo }));
