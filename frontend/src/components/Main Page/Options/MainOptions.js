@@ -5,8 +5,6 @@ import Options from './Options';
 function MainOptions({ options, onChecked }) {
   const [isOpenData, setIsOpenData] = useState([]);
 
-  console.log(options);
-
   function onOpen(isOpen, index) {
     setIsOpenData((prev) => {
       const updatedData = [...prev];

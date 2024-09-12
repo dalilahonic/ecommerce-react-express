@@ -24,7 +24,7 @@ function MealPopup() {
   const { state } = useLocation();
 
   useEffect(() => {
-    const fetchMeal = async () => {
+    const fetchItem = async () => {
       try {
         const response = await api.get(
           `items/${state.title}`
@@ -33,10 +33,8 @@ function MealPopup() {
       } catch (err) {}
     };
 
-    fetchMeal();
+    fetchItem();
   }, [state]);
-
-  console.log(target);
 
   function handleOrder(orderInfo) {
     dispatch(orderActions.addToCart({ orderInfo }));

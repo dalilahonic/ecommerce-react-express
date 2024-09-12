@@ -1,35 +1,40 @@
-import { useContext } from 'react';
-import SectionsContext from '../../../../context/SectionsContext';
+import { useEffect, useState } from 'react';
 import classes from './NavBar.module.css';
-import useTransformText from '../../../../hooks/useTransformText';
+import api from '../../../../services/axios';
 
 function NavBar({ handleClickScroll, setIsDropdownOpen }) {
-  const sections = useContext(SectionsContext);
+  const [categories, setCategories] = useState([]);
 
-  const transformed = useTransformText(sections);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get(`/categories`);
+        setCategories(response.data);
+      } catch {}
+    };
+
+    fetchCategories();
+  }, []);
 
   return (
     <div className={classes.links}>
       <ul>
-        {sections.slice(0, 7).map((_, index) => {
-          return index < 6 ? (
+        {categories.slice(0, 5)?.map((category, index) => {
+          return (
             <li
               onClick={() =>
                 handleClickScroll(`meal${index}`)
               }
               key={index}
             >
-              {transformed[index]}
-            </li>
-          ) : (
-            <li
-              key={index}
-              onMouseEnter={() => setIsDropdownOpen(true)}
-            >
-              More
+              {' '}
+              {category.name}
             </li>
           );
         })}
+        <li onMouseEnter={() => setIsDropdownOpen(true)}>
+          More
+        </li>
       </ul>
     </div>
   );

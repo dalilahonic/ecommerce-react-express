@@ -1,15 +1,23 @@
-import { useContext } from 'react';
+import { useEffect, useState } from 'react';
 import classes from './Dropdown.module.css';
-import SectionsContext from '../../../../context/SectionsContext';
-import useTransformText from '../../../../hooks/useTransformText';
+import api from '../../../../services/axios';
 
 function Dropdown({
   setIsDropdownOpen,
   handleClickScroll,
 }) {
-  let sections = useContext(SectionsContext);
-  sections = sections.slice(6);
-  const transformedLinks = useTransformText(sections);
+  const [categories, setCategories] = useState();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await api.get('/categories');
+      setCategories(response.data);
+    };
+
+    fetchCategories();
+  }, []);
+
+  console.log(categories);
 
   return (
     <div
@@ -17,7 +25,7 @@ function Dropdown({
       className={classes.dropdown}
     >
       <ul>
-        {sections.map((_, index) => {
+        {categories.slice(5)?.map((category, index) => {
           return (
             <li
               key={index}
@@ -25,7 +33,7 @@ function Dropdown({
                 handleClickScroll(`meal${index + 6}`)
               }
             >
-              {transformedLinks[index]}
+              {category.name}
             </li>
           );
         })}

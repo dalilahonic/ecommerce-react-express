@@ -25,4 +25,11 @@ router.get('/items/:title', async (req, res, next) => {
   }
 });
 
+router.get('/categories', async (req, res, next) => {
+  try {
+    const categories = await Category.find().select('name');
+    res.json(categories);
+  } catch (err) {}
+});
+
 export default router;
