@@ -1,6 +1,6 @@
 import classes from './SearchBar.module.css';
 import Dropdown from '../Dropdown/Dropdown';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import NavBar from '../Nav Bar/NavBar';
 import SearchInput from '../Search Input/SearchInput';
 
@@ -12,28 +12,37 @@ function SearchBar({
   const [isDropdownOpen, setIsDropdownOpen] =
     useState(false);
 
-  function handleClickScroll(id) {
+  const scrollToSection = useCallback((id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }, []);
+
+  const toggleDropdown = useCallback(
+    (isOpen) => setIsDropdownOpen(isOpen),
+    []
+  );
+
+  if (isSearchOpen) {
+    return (
+      <SearchInput
+        onChangeInputValue={onChangeInputValue}
+        onExit={onExit}
+      />
+    );
   }
 
-  return isSearchOpen ? (
-    <SearchInput
-      onChangeInputValue={onChangeInputValue}
-      onExit={onExit}
-    />
-  ) : (
+  return (
     <div className={classes.links}>
       <NavBar
-        handleClickScroll={handleClickScroll}
-        setIsDropdownOpen={setIsDropdownOpen}
+        scrollToSection={scrollToSection}
+        toggleDropdown={toggleDropdown}
       />
       {isDropdownOpen && (
         <Dropdown
-          handleClickScroll={handleClickScroll}
-          setIsDropdownOpen={setIsDropdownOpen}
+          scrollToSection={scrollToSection}
+          toggleDropdown={toggleDropdown}
         />
       )}
     </div>

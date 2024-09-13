@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import classes from './Dropdown.module.css';
 import api from '../../../../services/axios';
 
-function Dropdown({
-  setIsDropdownOpen,
-  handleClickScroll,
-}) {
-  const [categories, setCategories] = useState();
+function Dropdown({ toggleDropdown, scrollToSection }) {
+  const [categories, setCategories] = useState([]);
+  const closeTimeoutRef = useRef(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -17,20 +15,36 @@ function Dropdown({
     fetchCategories();
   }, []);
 
-  console.log(categories);
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      toggleDropdown(false);
+    }, 300);
+  };
 
   return (
     <div
-      onMouseLeave={() => setIsDropdownOpen(false)}
+      onMouseLeave={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
       className={classes.dropdown}
     >
       <ul>
-        {categories.slice(5)?.map((category, index) => {
+        {categories?.slice(6)?.map((category, index) => {
           return (
             <li
               key={index}
               onClick={() =>
-                handleClickScroll(`meal${index + 6}`)
+                scrollToSection(
+                  category.name
+                    .toLowerCase()
+                    .split(' ')
+                    .join('-')
+                )
               }
             >
               {category.name}

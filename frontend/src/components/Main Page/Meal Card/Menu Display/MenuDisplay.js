@@ -17,7 +17,14 @@ function MenuDisplay({
         <>
           <div className={classes.main}>
             <div className={classes.mealsHeading}>
-              <h1>{categoryHeading}</h1>
+              <h1
+                id={categoryHeading
+                  .toLowerCase()
+                  .split(' ')
+                  .join('-')}
+              >
+                {categoryHeading}
+              </h1>
             </div>
             <div className={classes.mealsContainer}>
               {filteredData.map((meal, index) => (
